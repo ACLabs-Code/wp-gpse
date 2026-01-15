@@ -1,4 +1,4 @@
-# Google Programmable Search Engine (GPSE)
+# GPSE Search
 
 A WordPress plugin that replaces the native search with Google Programmable Search Engine (formerly Custom Search Engine).
 

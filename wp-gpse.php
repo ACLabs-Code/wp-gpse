@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Google Programmable Search Engine
+ * Plugin Name: GPSE Search
  * Description: Replaces the standard WordPress search with a Google Programmable Search Engine (GCSE).
  * Version: 1.0.0
  * Author: Gemini

@@ -31,7 +31,7 @@ class WP_GPSE_Admin {
 	public function create_admin_page() {
 		?>
 		<div class="wrap">
-			<h1>Google Programmable Search Engine</h1>
+			<h1>GPSE Search</h1>
 			<form method="post" action="options.php">
 				<?php
 				settings_fields( 'wp_gpse_option_group' );
