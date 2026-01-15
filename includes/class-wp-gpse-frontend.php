@@ -36,14 +36,13 @@ class WP_GPSE_Frontend {
 	public function enqueue_google_script() {
 		$cx_id = get_option( 'wp_gpse_cx_id' );
 		if ( ! empty( $cx_id ) ) {
-			// We can't use wp_enqueue_script for this easily because it has query params that might get escaped/handled weirdly, 
-			// and it's an async external script. But let's try standard way or print inline.
-			// Google recommends: <script async src="https://cse.google.com/cse.js?cx=YOUR_ENGINE_ID"></script>
-			
-			// We will output it in head or footer.
-			add_action( 'wp_head', function() use ( $cx_id ) {
-				echo '<script async src="https://cse.google.com/cse.js?cx=' . esc_attr( $cx_id ) . '"></script>';
-			} );
+			wp_enqueue_script( 
+				'google-cse', 
+				'https://cse.google.com/cse.js?cx=' . esc_attr( $cx_id ), 
+				array(), 
+				null, 
+				array( 'strategy' => 'async' ) 
+			);
 		}
 	}
 
@@ -62,7 +61,7 @@ class WP_GPSE_Frontend {
 				// However, if the Search Box Widget is used, it uses 'q' by default.
 				if ( $url ) {
 					$url = add_query_arg( 'q', $query, $url );
-					wp_redirect( $url );
+					wp_safe_redirect( $url );
 					exit;
 				}
 			}

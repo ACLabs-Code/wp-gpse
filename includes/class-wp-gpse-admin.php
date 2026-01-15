@@ -133,7 +133,21 @@ class WP_GPSE_Admin {
 			'option_none_value'     => 0,
 		);
 		
-		echo wp_dropdown_pages( $args );
+		echo wp_kses(
+			wp_dropdown_pages( $args ),
+			array(
+				'select' => array(
+					'name'  => array(),
+					'id'    => array(),
+					'class' => array(),
+				),
+				'option' => array(
+					'value'    => array(),
+					'selected' => array(),
+					'class'    => array(),
+				),
+			)
+		);
 		?>
 		<p class="description">Select the page where you have placed the <code>[gpse_results]</code> shortcode. Native searches will be redirected here.</p>
 		<?php
