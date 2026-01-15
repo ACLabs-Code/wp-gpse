@@ -11,7 +11,7 @@ A WordPress plugin that replaces the native search with Google Programmable Sear
 
 ## Installation & Setup
 
-1.  **Install the Plugin**: Upload the `wp-gpse` folder to your `/wp-content/plugins/` directory and activate it.
+1.  **Install the Plugin**: Upload the `gpse` folder to your `/wp-content/plugins/` directory and activate it.
 2.  **Create a Results Page**:
     *   Create a new Page in WordPress (e.g., "Search Results").
     *   Add the shortcode `[gpse_results]` to the page content.

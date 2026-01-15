@@ -21,12 +21,12 @@ class WP_GPSE_Frontend {
 	 * Enqueue plugin styles.
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( 'wp-gpse-style', WP_GPSE_URL . 'assets/css/wp-gpse.css', array(), WP_GPSE_VERSION );
+		wp_enqueue_style( 'gpse-style', GPSE_URL . 'assets/css/gpse.css', array(), GPSE_VERSION );
 
 		$margin = get_option( 'wp_gpse_autocomplete_margin', 15 );
 		if ( $margin !== 15 && $margin !== '' ) {
 			$custom_css = ".gssb_c { margin-top: {$margin}px !important; } .gsc-completion-container { margin-top: {$margin}px !important; }";
-			wp_add_inline_style( 'wp-gpse-style', $custom_css );
+			wp_add_inline_style( 'gpse-style', $custom_css );
 		}
 	}
 

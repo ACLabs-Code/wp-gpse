@@ -9,11 +9,11 @@ class WP_GPSE_Admin {
 	public function init() {
 		add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
 		add_action( 'admin_init', array( $this, 'page_init' ) );
-		add_filter( 'plugin_action_links_' . WP_GPSE_BASENAME, array( $this, 'add_settings_link' ) );
+		add_filter( 'plugin_action_links_' . GPSE_BASENAME, array( $this, 'add_settings_link' ) );
 	}
 
 	public function add_settings_link( $links ) {
-		$settings_link = '<a href="options-general.php?page=wp-gpse">Settings</a>';
+		$settings_link = '<a href="options-general.php?page=gpse">Settings</a>';
 		array_unshift( $links, $settings_link );
 		return $links;
 	}
@@ -23,7 +23,7 @@ class WP_GPSE_Admin {
 			'GPSE Settings',
 			'GPSE',
 			'manage_options',
-			'wp-gpse',
+			'gpse',
 			array( $this, 'create_admin_page' )
 		);
 	}
@@ -35,7 +35,7 @@ class WP_GPSE_Admin {
 			<form method="post" action="options.php">
 				<?php
 				settings_fields( 'wp_gpse_option_group' );
-				do_settings_sections( 'wp-gpse-admin' );
+				do_settings_sections( 'gpse-admin' );
 				submit_button();
 				?>
 			</form>
@@ -78,14 +78,14 @@ class WP_GPSE_Admin {
 			'wp_gpse_setting_section',
 			'Configuration',
 			array( $this, 'section_info' ),
-			'wp-gpse-admin'
+			'gpse-admin'
 		);
 
 		add_settings_field(
 			'wp_gpse_cx_id',
 			'Search Engine ID (CX)',
 			array( $this, 'cx_id_callback' ),
-			'wp-gpse-admin',
+			'gpse-admin',
 			'wp_gpse_setting_section'
 		);
 
@@ -93,7 +93,7 @@ class WP_GPSE_Admin {
 			'wp_gpse_results_page_id',
 			'Search Results Page',
 			array( $this, 'results_page_callback' ),
-			'wp-gpse-admin',
+			'gpse-admin',
 			'wp_gpse_setting_section'
 		);
 
@@ -101,7 +101,7 @@ class WP_GPSE_Admin {
 			'wp_gpse_autocomplete_margin',
 			'Autocomplete Top Margin (px)',
 			array( $this, 'autocomplete_margin_callback' ),
-			'wp-gpse-admin',
+			'gpse-admin',
 			'wp_gpse_setting_section'
 		);
 	}
