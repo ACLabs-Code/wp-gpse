@@ -5,6 +5,8 @@
  * Version: 1.0.0
  * Author: Gemini
  * Text Domain: wp-gpse
+ * License: AGPL v3 or later
+ * License URI: https://www.gnu.org/licenses/agpl-3.0.html
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
