@@ -1,9 +1,73 @@
 /* WP GPSE Custom Styles */
 
 /* 
- * Fix for Google Autocomplete (Type-ahead)
- * Sometimes the autocomplete dropdown (.gssb_c) can be hidden behind other elements 
- * or positioned incorrectly depending on the theme.
+ * ==========================================================================
+ * Google CSE Reset / Protection
+ * ==========================================================================
+ * Many WordPress themes apply aggressive styling to global elements like 
+ * 'table', 'td', 'input', etc. This breaks the Google CSE layout.
+ * We use high-specificity selectors to reset these values.
+ */
+
+/* Main Container Reset */
+.gsc-control-cse {
+    font-family: Arial, sans-serif !important; /* Optional: Reset font if theme overrides weirdly */
+    padding: 0 !important;
+}
+
+/* Table Resets */
+/* Google uses tables for layout. Themes often add borders/padding to all 'td's. */
+.gsc-control-cse table,
+.gsc-control-cse tbody,
+.gsc-control-cse tr,
+.gsc-control-cse td {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    line-height: normal !important;
+    width: auto; /* Prevent 100% width forcing on internal cells */
+}
+
+/* Specific fix for the search box input */
+.gsc-input-box {
+    height: auto !important;
+    border: 1px solid #dfe1e5 !important; /* Restore default Google border if theme removed it */
+    background: #fff !important;
+}
+
+.gsc-input-box table {
+    margin: 0 !important;
+}
+
+/* The actual text input field */
+input.gsc-input, 
+.gsc-input-box input {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 6px 10px !important; /* Standard padding */
+    margin: 0 !important;
+    height: auto !important; /* Fix "twice as high" issue */
+    line-height: normal !important;
+    width: 100% !important;
+}
+
+/* Search Button Reset */
+button.gsc-search-button,
+input.gsc-search-button {
+    height: auto !important;
+    padding: 10px !important; /* Ensure button isn't tiny */
+    margin: 0 !important;
+    width: auto !important;
+    box-sizing: content-box !important;
+}
+
+/* 
+ * ==========================================================================
+ * Autocomplete / Type-ahead Fixes
+ * ==========================================================================
  */
 
 .gssb_c {
@@ -11,25 +75,14 @@
     margin-top: 15px; /* Default push down. Overridden by settings if changed. */
 }
 
-/* 
- * If the autocomplete is physically covering the input box (overlapping it),
- * it is usually because the Google script calculates position based on the body 
- * but the input is inside a relative container, or the theme adds specific table styling.
- * 
- * We can try to force a small margin-top if it's too tight, 
- * but Google controls 'top' and 'left' via inline styles.
- */
-
 .gsc-completion-container {
-    /* Ensure the table doesn't inherit weird theme borders or backgrounds if not desired */
     font-family: inherit;
     font-size: inherit;
-    background-color: #fff !important; /* Ensure readable background */
-    margin-top: 15px; /* Default push down */
+    background-color: #fff !important;
+    margin-top: 15px; 
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* Fix generic table styles that might break the layout */
 .gsc-completion-container td {
     border: none !important;
     padding: 0 !important;
