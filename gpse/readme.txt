@@ -3,29 +3,29 @@ Contributors: gemini
 Tags: search, google, gcse, programmable search, cse
 Requires at least: 6.4
 Tested up to: 6.9
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 Requires PHP: 8.0
 License: AGPL v3 or later
 License URI: https://www.gnu.org/licenses/agpl-3.0.html
 
-Replaces the standard WordPress search with a Google Programmable Search Engine (GCSE).
+Redirects WordPress searches to display Google Programmable Search Engine (GCSE) results.
 
 == Description ==
 
-Replaces the standard WordPress search with a Google Programmable Search Engine (GCSE).
+Redirects WordPress searches to display Google Programmable Search Engine (GCSE) results. Works seamlessly with the standard WordPress Search block or your theme's search form.
 
 === Features ===
 
-*   **Seamless Integration**: Replaces the standard WordPress search form automatically.
+*   **Seamless Integration**: Works with the standard WordPress Search block or your theme's search form.
 *   **Search Results Page**: Redirects all searches to a dedicated page of your choice.
 *   **Configurable**: Easy settings to add your Search Engine ID (CX) and select the results page.
-*   **Blocks & Shortcodes**: Use Gutenberg blocks or shortcodes (`[gpse_form]` and `[gpse_results]`) to place the search box and results anywhere.
+*   **Google-Powered Results**: Display Google CSE results using the GPSE Search Results block or `[gpse_results]` shortcode.
 
 === How it Works ===
 
-*   **Search Box**: The plugin automatically filters `get_search_form()` to display the Google Search Box.
-*   **Redirection**: If a user tries to use the default WordPress search URL (e.g., `/?s=myquery`), they are automatically redirected to your custom Results Page (e.g., `/search-results/?q=myquery`).
-*   **Styles**: The search interface inherits styles from your Google Programmable Search Engine configuration (Overlay, Two Page, etc.). Ensure you select "Two Page" or "Results Only" layout in Google's control panel for the best experience with the "Results Page" setup.
+*   **Search Box**: Use the standard WordPress Search block or your theme's search form to allow users to search your site.
+*   **Redirection**: When a user searches (e.g., `/?s=myquery`), they are automatically redirected to your custom Results Page (e.g., `/search-results/?q=myquery`).
+*   **Google CSE Results**: The Results Page displays Google-powered search results using your configured Google Programmable Search Engine.
 
 == Installation ==
 
@@ -39,8 +39,18 @@ Replaces the standard WordPress search with a Google Programmable Search Engine 
     *   Enter your **Google Search Engine ID (CX)**. (Get this from [programmablesearchengine.google.com](https://programmablesearchengine.google.com/)).
     *   Select your "Search Results" page from the dropdown.
     *   Save Changes.
+4.  **Add Search Form**:
+    *   Add the standard WordPress **Search** block to your site (header, sidebar, page, etc.).
+    *   Or use your theme's built-in search form.
 
 == Changelog ==
+
+= 1.2.0 =
+* Removed custom GPSE Search Form block - use standard WordPress Search block instead.
+* Removed [gpse_form] shortcode - use core WordPress search functionality.
+* Removed automatic search form replacement filter.
+* Simplified plugin to focus on search redirection and results display.
+* Preserved redirect functionality - standard WP searches still use Google CSE results.
 
 = 1.1.0 =
 * Added Gutenberg blocks for Search Form and Search Results.

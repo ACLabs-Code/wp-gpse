@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: GPSE Search
- * Description: Replaces the standard WordPress search with a Google Programmable Search Engine (GCSE).
- * Version: 1.1.0
+ * Description: Redirects WordPress searches to display Google Programmable Search Engine (GCSE) results.
+ * Version: 1.2.0
  * Author: Gemini
  * Text Domain: gpse
  * License: AGPL v3 or later
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GPSE_VERSION', '1.1.0' );
+define( 'GPSE_VERSION', '1.2.0' );
 define( 'GPSE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'GPSE_URL', plugin_dir_url( __FILE__ ) );
 define( 'GPSE_BASENAME', plugin_basename( __FILE__ ) );
