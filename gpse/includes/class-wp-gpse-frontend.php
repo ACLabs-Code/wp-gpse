@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * GPSE Frontend Class
  *
  * Handles all frontend functionality including shortcodes, search redirection,
- * form replacement, and Google CSE script/style enqueuing.
+ * and Google CSE script/style enqueuing.
  *
  * @since 1.0.0
  */
@@ -17,18 +17,15 @@ class WP_GPSE_Frontend {
 	/**
 	 * Initialize frontend functionality.
 	 *
-	 * Registers shortcodes, hooks for search redirection, form filtering,
-	 * and asset enqueuing.
+	 * Registers shortcodes, hooks for search redirection, and asset enqueuing.
 	 *
 	 * @since 1.0.0
 	 * @return void
 	 */
 	public function init() {
-		add_shortcode( 'gpse_form', array( $this, 'render_search_form_shortcode' ) );
 		add_shortcode( 'gpse_results', array( $this, 'render_search_results_shortcode' ) );
 
 		add_action( 'template_redirect', array( $this, 'redirect_native_search' ) );
-		add_filter( 'get_search_form', array( $this, 'filter_search_form' ) );
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_google_script' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
@@ -107,22 +104,6 @@ class WP_GPSE_Frontend {
 	}
 
 	/**
-	 * Render search form shortcode.
-	 *
-	 * Outputs the Google CSE search box div element configured for "Two Page"
-	 * mode, pointing to the configured results page.
-	 *
-	 * Usage: [gpse_form]
-	 *
-	 * @since 1.0.0
-	 * @param array $atts Shortcode attributes (currently unused).
-	 * @return string HTML markup for Google CSE search box.
-	 */
-	public function render_search_form_shortcode( $atts ) {
-		return WP_GPSE_Helpers::get_search_form_html();
-	}
-
-	/**
 	 * Render search results shortcode.
 	 *
 	 * Outputs the Google CSE search results div element configured to display
@@ -136,22 +117,5 @@ class WP_GPSE_Frontend {
 	 */
 	public function render_search_results_shortcode( $atts ) {
 		return WP_GPSE_Helpers::get_search_results_html();
-	}
-
-	/**
-	 * Filter and replace the native WordPress search form.
-	 *
-	 * Intercepts calls to get_search_form() and replaces the theme's search
-	 * form with the Google CSE search box.
-	 *
-	 * @since 1.0.0
-	 * @param string $form The default search form HTML.
-	 * @return string Replaced HTML markup for Google CSE search box.
-	 */
-	public function filter_search_form( $form ) {
-		// We want to return the Google Search Box form instead of the theme's form.
-		// However, get_search_form is often called within PHP tags, so we return string.
-		// We'll reuse the shortcode logic.
-		return $this->render_search_form_shortcode( array() );
 	}
 }

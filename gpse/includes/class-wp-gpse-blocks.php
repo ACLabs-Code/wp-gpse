@@ -40,37 +40,13 @@ class WP_GPSE_Blocks {
 	 * @return void
 	 */
 	public function register_blocks() {
-		// Search Form Block
-		register_block_type( 
-			GPSE_PATH . 'build/search-form', 
-			array(
-				'render_callback' => array( $this, 'render_search_form_block' ),
-			) 
-		);
-
 		// Search Results Block
-		register_block_type( 
-			GPSE_PATH . 'build/search-results', 
+		register_block_type(
+			GPSE_PATH . 'build/search-results',
 			array(
 				'render_callback' => array( $this, 'render_search_results_block' ),
-			) 
+			)
 		);
-	}
-
-	/**
-	 * Render callback for the Search Form block.
-	 *
-	 * Outputs the Google CSE search box div element configured for "Two Page"
-	 * mode, pointing to the configured results page. This is the server-side
-	 * rendering callback for the gpse/search-form block.
-	 *
-	 * @since 1.1.0
-	 * @param array  $attributes Block attributes from the editor.
-	 * @param string $content    Block content (unused for dynamic blocks).
-	 * @return string HTML markup for Google CSE search box.
-	 */
-	public function render_search_form_block( $attributes, $content ) {
-		return WP_GPSE_Helpers::get_search_form_html();
 	}
 
 	/**
