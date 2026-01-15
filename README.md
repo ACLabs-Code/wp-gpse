@@ -1,6 +1,14 @@
-# GPSE Search
+=== GPSE Search ===
+Contributors: gemini
+Tags: search, google, gcse, programmable search, cse
+Requires at least: 6.4
+Tested up to: 6.9
+Stable tag: 1.0.0
+Requires PHP: 8.4
+License: AGPL v3 or later
+License URI: https://www.gnu.org/licenses/agpl-3.0.html
 
-A WordPress plugin that replaces the native search with Google Programmable Search Engine (formerly Custom Search Engine).
+Replaces the standard WordPress search with a Google Programmable Search Engine (GCSE).
 
 ## Features
 
