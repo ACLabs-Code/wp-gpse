@@ -88,7 +88,7 @@ GPSE Search replaces WordPress's native search functionality with Google Program
 
 ### 2. ~~Internationalization Incomplete~~ ✅ COMPLETED
 
-**Status:** ✅ **Resolved in commit [pending]**
+**Status:** ✅ **Resolved in commit 14de351**
 
 **What Was Done:**
 - Wrapped all admin UI strings with proper i18n functions:
@@ -268,8 +268,8 @@ delete_option( 'wp_gpse_autocomplete_margin' );
 ### Immediate (Before Production Launch)
 1. ✅ **DONE** - Add explicit capability checks in admin callbacks (commit ab07d4c)
 2. ✅ **DONE** - Add nonce verification for admin operations (commit ab07d4c)
-3. ✅ **DONE** - Wrap all PHP strings with i18n functions (commit [pending])
-4. ✅ **DONE** - Generate .pot file and set up translation loading (commit [pending])
+3. ✅ **DONE** - Wrap all PHP strings with i18n functions (commit 14de351)
+4. ✅ **DONE** - Generate .pot file and set up translation loading (commit 14de351)
 
 ### Short Term (Next Release)
 5. ⬜ Create PHPUnit test suite for core functionality
@@ -294,13 +294,13 @@ delete_option( 'wp_gpse_autocomplete_margin' );
 ## Files Requiring Attention
 
 ### High Priority
-- `/gpse/includes/class-wp-gpse-admin.php` - ~~Security~~ ✅ **DONE** (commit ab07d4c) + ~~i18n~~ ✅ **DONE** (commit [pending])
+- `/gpse/includes/class-wp-gpse-admin.php` - ~~Security~~ ✅ **DONE** (commit ab07d4c) + ~~i18n~~ ✅ **DONE** (commit 14de351)
 - `/gpse/includes/class-wp-gpse-frontend.php` - ~~Security~~ ✅ **DONE** (commit ab07d4c) + ~~i18n~~ ✅ **DONE** (N/A - no user-facing strings)
 - `/gpse/includes/class-wp-gpse-blocks.php` - ~~i18n~~ ✅ **DONE** (already done in block.json)
 
 ### Medium Priority
 - ~~`/gpse/gpse.php` - Add text domain loader~~ ✅ **DONE** (Not needed WP 4.6+)
-- ~~`/gpse/languages/` - Create directory and .pot file~~ ✅ **DONE** (commit [pending])
+- ~~`/gpse/languages/` - Create directory and .pot file~~ ✅ **DONE** (commit 14de351)
 - ~~All PHP files - Add DocBlocks~~ ✅ **DONE** (commit 633a8b9)
 - Create `/gpse/uninstall.php`
 - Create `/tests/` directory
@@ -323,7 +323,7 @@ delete_option( 'wp_gpse_autocomplete_margin' );
 
 **Recent Improvements:**
 
-*Commit [pending] (Internationalization):*
+*Commit 14de351 (Internationalization):*
 - ✅ All admin strings wrapped with proper i18n functions
 - ✅ Generated complete .pot translation template
 - ✅ Created languages directory structure
