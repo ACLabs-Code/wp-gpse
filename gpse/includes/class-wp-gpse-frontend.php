@@ -46,8 +46,10 @@ class WP_GPSE_Frontend {
 	public function enqueue_styles() {
 		wp_enqueue_style( 'gpse-style', GPSE_URL . 'assets/css/gpse.css', array(), GPSE_VERSION );
 
-		$margin = get_option( 'wp_gpse_autocomplete_margin', 15 );
-		if ( $margin !== 15 && $margin !== '' ) {
+		// Get margin value and ensure it's a positive integer (defense in depth)
+		$margin = absint( get_option( 'wp_gpse_autocomplete_margin', 15 ) );
+		if ( $margin !== 15 && $margin !== 0 ) {
+			// Safe to use in CSS as $margin is guaranteed to be a positive integer
 			$custom_css = ".gssb_c { margin-top: {$margin}px !important; } .gsc-completion-container { margin-top: {$margin}px !important; }";
 			wp_add_inline_style( 'gpse-style', $custom_css );
 		}

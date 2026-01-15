@@ -74,11 +74,16 @@ class WP_GPSE_Admin {
 	 * @return void
 	 */
 	public function create_admin_page() {
+		// Verify user has permission to access this page
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'gpse' ) );
+		}
 		?>
 		<div class="wrap">
 			<h1>GPSE Search</h1>
 			<form method="post" action="options.php">
 				<?php
+				// settings_fields() handles nonce generation and verification automatically
 				settings_fields( 'wp_gpse_option_group' );
 				do_settings_sections( 'gpse-admin' );
 				submit_button();
