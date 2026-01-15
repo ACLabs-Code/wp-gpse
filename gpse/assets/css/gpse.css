@@ -115,11 +115,26 @@ input.gsc-search-button {
     text-overflow: clip !important;
 }
 
-/* Fix positioning - add spacing before "Sort by:" */
-.gsc-orderby-container {
+/* Fix positioning - target the table cell containing the orderby */
+.gsc-result-info-container .gsc-orderby-container,
+.gsc-resultsHeader .gsc-orderby-container,
+.gsc-above-wrapper-area .gsc-orderby-container {
     margin-left: 20px !important;
+    padding-left: 20px !important;
     display: inline-block !important;
     vertical-align: middle !important;
+}
+
+/* Target the table cell itself */
+.gsc-resultsHeader td.gsc-orderby-container,
+.gsc-result-info-container td.gsc-orderby-container {
+    padding-left: 20px !important;
+}
+
+/* If it's in a table, target the td */
+td.gsc-orderby-container {
+    padding-left: 20px !important;
+    text-align: left !important;
 }
 
 /* Ensure proper alignment of the orderby label and dropdown */
