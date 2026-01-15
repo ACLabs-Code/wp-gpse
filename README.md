@@ -1,4 +1,4 @@
-# WP Google Programmable Search Engine (WP GPSE)
+# Google Programmable Search Engine (GPSE)
 
 A WordPress plugin that replaces the native search with Google Programmable Search Engine (formerly Custom Search Engine).
 
@@ -17,7 +17,7 @@ A WordPress plugin that replaces the native search with Google Programmable Sear
     *   Add the shortcode `[gpse_results]` to the page content.
     *   Publish the page.
 3.  **Configure**:
-    *   Go to **Settings > WP GPSE**.
+    *   Go to **Settings > GPSE**.
     *   Enter your **Google Search Engine ID (CX)**. (Get this from [programmablesearchengine.google.com](https://programmablesearchengine.google.com/)).
     *   Select your "Search Results" page from the dropdown.
     *   Save Changes.
