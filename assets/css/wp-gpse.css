@@ -1,0 +1,36 @@
+/* WP GPSE Custom Styles */
+
+/* 
+ * Fix for Google Autocomplete (Type-ahead)
+ * Sometimes the autocomplete dropdown (.gssb_c) can be hidden behind other elements 
+ * or positioned incorrectly depending on the theme.
+ */
+
+.gssb_c {
+    z-index: 10000 !important;
+    margin-top: 15px; /* Default push down. Overridden by settings if changed. */
+}
+
+/* 
+ * If the autocomplete is physically covering the input box (overlapping it),
+ * it is usually because the Google script calculates position based on the body 
+ * but the input is inside a relative container, or the theme adds specific table styling.
+ * 
+ * We can try to force a small margin-top if it's too tight, 
+ * but Google controls 'top' and 'left' via inline styles.
+ */
+
+.gsc-completion-container {
+    /* Ensure the table doesn't inherit weird theme borders or backgrounds if not desired */
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #fff !important; /* Ensure readable background */
+    margin-top: 15px; /* Default push down */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Fix generic table styles that might break the layout */
+.gsc-completion-container td {
+    border: none !important;
+    padding: 0 !important;
+}

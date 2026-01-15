@@ -64,6 +64,16 @@ class WP_GPSE_Admin {
 			)
 		);
 
+		register_setting(
+			'wp_gpse_option_group',
+			'wp_gpse_autocomplete_margin',
+			array(
+				'type'              => 'integer',
+				'sanitize_callback' => 'absint',
+				'default'           => 15,
+			)
+		);
+
 		add_settings_section(
 			'wp_gpse_setting_section',
 			'Configuration',
@@ -83,6 +93,14 @@ class WP_GPSE_Admin {
 			'wp_gpse_results_page_id',
 			'Search Results Page',
 			array( $this, 'results_page_callback' ),
+			'wp-gpse-admin',
+			'wp_gpse_setting_section'
+		);
+
+		add_settings_field(
+			'wp_gpse_autocomplete_margin',
+			'Autocomplete Top Margin (px)',
+			array( $this, 'autocomplete_margin_callback' ),
 			'wp-gpse-admin',
 			'wp_gpse_setting_section'
 		);
@@ -118,6 +136,14 @@ class WP_GPSE_Admin {
 		echo wp_dropdown_pages( $args );
 		?>
 		<p class="description">Select the page where you have placed the <code>[gpse_results]</code> shortcode. Native searches will be redirected here.</p>
+		<?php
+	}
+
+	public function autocomplete_margin_callback() {
+		$margin = get_option( 'wp_gpse_autocomplete_margin', 15 );
+		?>
+		<input type="number" name="wp_gpse_autocomplete_margin" value="<?php echo esc_attr( $margin ); ?>" class="small-text" /> px
+		<p class="description">Adjust this if the autocomplete dropdown covers your search input. Default is 15.</p>
 		<?php
 	}
 }
