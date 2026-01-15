@@ -40,7 +40,7 @@ class WP_GPSE_Frontend {
 				'google-cse', 
 				'https://cse.google.com/cse.js?cx=' . esc_attr( $cx_id ), 
 				array(), 
-				null, 
+				GPSE_VERSION, 
 				array( 'strategy' => 'async' ) 
 			);
 		}
