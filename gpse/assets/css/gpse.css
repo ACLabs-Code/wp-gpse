@@ -87,3 +87,30 @@ input.gsc-search-button {
     border: none !important;
     padding: 0 !important;
 }
+
+/*
+ * ==========================================================================
+ * Sort/Filter Dropdown Fixes
+ * ==========================================================================
+ */
+
+/* Fix for the "Sort by" dropdown text overflow */
+.gsc-orderby-container,
+.gsc-option-menu-container {
+    width: auto !important;
+    min-width: 150px !important;
+    overflow: visible !important;
+}
+
+.gsc-option-selector {
+    width: auto !important;
+    min-width: 150px !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+}
+
+.gsc-option-menu-item {
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+}
