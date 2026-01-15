@@ -4,20 +4,56 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * GPSE Admin Settings Class
+ *
+ * Handles all admin-related functionality including settings page,
+ * option registration, and admin interface rendering.
+ *
+ * @since 1.0.0
+ */
 class WP_GPSE_Admin {
 
+	/**
+	 * Initialize admin functionality.
+	 *
+	 * Hooks into WordPress admin_menu and admin_init actions to register
+	 * the settings page and configuration options.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	public function init() {
 		add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
 		add_action( 'admin_init', array( $this, 'page_init' ) );
 		add_filter( 'plugin_action_links_' . GPSE_BASENAME, array( $this, 'add_settings_link' ) );
 	}
 
+	/**
+	 * Add Settings link to plugin action links.
+	 *
+	 * Adds a "Settings" link to the plugin's entry on the Plugins page,
+	 * providing quick access to the configuration page.
+	 *
+	 * @since 1.0.0
+	 * @param array $links Existing plugin action links.
+	 * @return array Modified array of plugin action links.
+	 */
 	public function add_settings_link( $links ) {
 		$settings_link = '<a href="options-general.php?page=gpse">Settings</a>';
 		array_unshift( $links, $settings_link );
 		return $links;
 	}
 
+	/**
+	 * Add plugin settings page to WordPress admin menu.
+	 *
+	 * Registers the GPSE settings page under Settings > GPSE in the
+	 * WordPress admin menu. Requires 'manage_options' capability.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	public function add_plugin_page() {
 		add_options_page(
 			'GPSE Settings',
@@ -28,6 +64,15 @@ class WP_GPSE_Admin {
 		);
 	}
 
+	/**
+	 * Render the admin settings page.
+	 *
+	 * Outputs the HTML for the GPSE settings page, including the form
+	 * fields for CX ID, results page selection, and autocomplete margin.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	public function create_admin_page() {
 		?>
 		<div class="wrap">
@@ -43,6 +88,15 @@ class WP_GPSE_Admin {
 		<?php
 	}
 
+	/**
+	 * Initialize and register all plugin settings.
+	 *
+	 * Registers three plugin options (CX ID, results page ID, autocomplete margin)
+	 * and creates the settings section with associated form fields.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	public function page_init() {
 		register_setting(
 			'wp_gpse_option_group',
@@ -106,10 +160,28 @@ class WP_GPSE_Admin {
 		);
 	}
 
+	/**
+	 * Display settings section description.
+	 *
+	 * Outputs introductory text for the GPSE configuration section,
+	 * displayed above the settings fields.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	public function section_info() {
 		echo 'Enter your Google Programmable Search Engine details below.';
 	}
 
+	/**
+	 * Render CX ID input field.
+	 *
+	 * Displays the text input field for entering the Google Programmable
+	 * Search Engine ID (CX). This ID is required for the search to function.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	public function cx_id_callback() {
 		$cx_id = get_option( 'wp_gpse_cx_id' );
 		?>
@@ -118,6 +190,16 @@ class WP_GPSE_Admin {
 		<?php
 	}
 
+	/**
+	 * Render results page dropdown field.
+	 *
+	 * Displays a dropdown of WordPress pages where users can select the page
+	 * that will display search results. Native WordPress searches will redirect
+	 * to this page.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	public function results_page_callback() {
 		$selected_page = get_option( 'wp_gpse_results_page_id' );
 		
@@ -153,6 +235,16 @@ class WP_GPSE_Admin {
 		<?php
 	}
 
+	/**
+	 * Render autocomplete margin input field.
+	 *
+	 * Displays a number input for adjusting the top margin of Google's
+	 * autocomplete dropdown. Useful when the dropdown overlaps with the
+	 * search input field due to theme styling conflicts.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	public function autocomplete_margin_callback() {
 		$margin = get_option( 'wp_gpse_autocomplete_margin', 15 );
 		?>

@@ -18,6 +18,7 @@ define( 'GPSE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'GPSE_URL', plugin_dir_url( __FILE__ ) );
 define( 'GPSE_BASENAME', plugin_basename( __FILE__ ) );
 
+require_once GPSE_PATH . 'includes/class-wp-gpse-helpers.php';
 require_once GPSE_PATH . 'includes/class-wp-gpse-admin.php';
 require_once GPSE_PATH . 'includes/class-wp-gpse-frontend.php';
 require_once GPSE_PATH . 'includes/class-wp-gpse-blocks.php';
