@@ -1,0 +1,16 @@
+.wp-block-gpse-search-results {
+	border: 1px dashed #999;
+	padding: 40px 20px;
+	background: #fff;
+	text-align: center;
+	border-radius: 4px;
+}
+
+.gpse-block-placeholder {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	color: #777;
+	font-weight: 600;
+}

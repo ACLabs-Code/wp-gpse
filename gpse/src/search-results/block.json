@@ -1,0 +1,17 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "gpse/search-results",
+	"version": "1.0.0",
+	"title": "GPSE Search Results",
+	"category": "widgets",
+	"icon": "welcome-widgets-menus",
+	"description": "Google Programmable Search Engine results list.",
+	"supports": {
+		"html": false,
+		"align": true
+	},
+	"textdomain": "gpse",
+	"editorScript": "file:./index.js",
+	"style": "file:./index.css"
+}
