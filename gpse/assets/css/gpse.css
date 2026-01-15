@@ -94,7 +94,7 @@ input.gsc-search-button {
  * ==========================================================================
  */
 
-/* Fix for the "Sort by" dropdown text overflow */
+/* Fix for the "Sort by" dropdown text overflow and positioning */
 .gsc-orderby-container,
 .gsc-option-menu-container {
     width: auto !important;
@@ -113,4 +113,18 @@ input.gsc-search-button {
     white-space: nowrap !important;
     overflow: visible !important;
     text-overflow: clip !important;
+}
+
+/* Fix positioning - add spacing before "Sort by:" */
+.gsc-orderby-container {
+    margin-left: 20px !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+}
+
+/* Ensure proper alignment of the orderby label and dropdown */
+.gsc-orderby-label {
+    margin-right: 8px !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
 }
