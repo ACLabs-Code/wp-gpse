@@ -40,7 +40,7 @@ class WP_GPSE_Admin {
 	 * @return array Modified array of plugin action links.
 	 */
 	public function add_settings_link( $links ) {
-		$settings_link = '<a href="options-general.php?page=gpse">Settings</a>';
+		$settings_link = '<a href="options-general.php?page=gpse">' . esc_html__( 'Settings', 'gpse' ) . '</a>';
 		array_unshift( $links, $settings_link );
 		return $links;
 	}
@@ -56,8 +56,8 @@ class WP_GPSE_Admin {
 	 */
 	public function add_plugin_page() {
 		add_options_page(
-			'GPSE Settings',
-			'GPSE',
+			esc_html__( 'GPSE Settings', 'gpse' ),
+			esc_html__( 'GPSE', 'gpse' ),
 			'manage_options',
 			'gpse',
 			array( $this, 'create_admin_page' )
@@ -80,7 +80,7 @@ class WP_GPSE_Admin {
 		}
 		?>
 		<div class="wrap">
-			<h1>GPSE Search</h1>
+			<h1><?php echo esc_html__( 'GPSE Search', 'gpse' ); ?></h1>
 			<form method="post" action="options.php">
 				<?php
 				// settings_fields() handles nonce generation and verification automatically
@@ -135,14 +135,14 @@ class WP_GPSE_Admin {
 
 		add_settings_section(
 			'wp_gpse_setting_section',
-			'Configuration',
+			esc_html__( 'Configuration', 'gpse' ),
 			array( $this, 'section_info' ),
 			'gpse-admin'
 		);
 
 		add_settings_field(
 			'wp_gpse_cx_id',
-			'Search Engine ID (CX)',
+			esc_html__( 'Search Engine ID (CX)', 'gpse' ),
 			array( $this, 'cx_id_callback' ),
 			'gpse-admin',
 			'wp_gpse_setting_section'
@@ -150,7 +150,7 @@ class WP_GPSE_Admin {
 
 		add_settings_field(
 			'wp_gpse_results_page_id',
-			'Search Results Page',
+			esc_html__( 'Search Results Page', 'gpse' ),
 			array( $this, 'results_page_callback' ),
 			'gpse-admin',
 			'wp_gpse_setting_section'
@@ -158,7 +158,7 @@ class WP_GPSE_Admin {
 
 		add_settings_field(
 			'wp_gpse_autocomplete_margin',
-			'Autocomplete Top Margin (px)',
+			esc_html__( 'Autocomplete Top Margin (px)', 'gpse' ),
 			array( $this, 'autocomplete_margin_callback' ),
 			'gpse-admin',
 			'wp_gpse_setting_section'
@@ -175,7 +175,7 @@ class WP_GPSE_Admin {
 	 * @return void
 	 */
 	public function section_info() {
-		echo 'Enter your Google Programmable Search Engine details below.';
+		echo esc_html__( 'Enter your Google Programmable Search Engine details below.', 'gpse' );
 	}
 
 	/**
@@ -191,7 +191,7 @@ class WP_GPSE_Admin {
 		$cx_id = get_option( 'wp_gpse_cx_id' );
 		?>
 		<input type="text" name="wp_gpse_cx_id" value="<?php echo esc_attr( $cx_id ); ?>" class="regular-text" />
-		<p class="description">You can find this in your Google Programmable Search Engine control panel.</p>
+		<p class="description"><?php echo esc_html__( 'You can find this in your Google Programmable Search Engine control panel.', 'gpse' ); ?></p>
 		<?php
 	}
 
@@ -207,7 +207,7 @@ class WP_GPSE_Admin {
 	 */
 	public function results_page_callback() {
 		$selected_page = get_option( 'wp_gpse_results_page_id' );
-		
+
 		$args = array(
 			'depth'                 => 0,
 			'child_of'              => 0,
@@ -216,10 +216,10 @@ class WP_GPSE_Admin {
 			'name'                  => 'wp_gpse_results_page_id',
 			'id'                    => 'wp_gpse_results_page_id',
 			'class'                 => 'regular-text',
-			'show_option_none'      => 'Select a page',
+			'show_option_none'      => __( 'Select a page', 'gpse' ),
 			'option_none_value'     => 0,
 		);
-		
+
 		echo wp_kses(
 			wp_dropdown_pages( $args ),
 			array(
@@ -236,7 +236,15 @@ class WP_GPSE_Admin {
 			)
 		);
 		?>
-		<p class="description">Select the page where you have placed the <code>[gpse_results]</code> shortcode. Native searches will be redirected here.</p>
+		<p class="description">
+			<?php
+			printf(
+				/* translators: %s: shortcode tag [gpse_results] */
+				esc_html__( 'Select the page where you have placed the %s shortcode. Native searches will be redirected here.', 'gpse' ),
+				'<code>[gpse_results]</code>'
+			);
+			?>
+		</p>
 		<?php
 	}
 
@@ -253,8 +261,8 @@ class WP_GPSE_Admin {
 	public function autocomplete_margin_callback() {
 		$margin = get_option( 'wp_gpse_autocomplete_margin', 15 );
 		?>
-		<input type="number" name="wp_gpse_autocomplete_margin" value="<?php echo esc_attr( $margin ); ?>" class="small-text" /> px
-		<p class="description">Adjust this if the autocomplete dropdown covers your search input. Default is 15.</p>
+		<input type="number" name="wp_gpse_autocomplete_margin" value="<?php echo esc_attr( $margin ); ?>" class="small-text" /> <?php echo esc_html_x( 'px', 'pixels unit abbreviation', 'gpse' ); ?>
+		<p class="description"><?php echo esc_html__( 'Adjust this if the autocomplete dropdown covers your search input. Default is 15.', 'gpse' ); ?></p>
 		<?php
 	}
 }

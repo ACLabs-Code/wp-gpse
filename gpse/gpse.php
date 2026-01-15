@@ -24,6 +24,9 @@ require_once GPSE_PATH . 'includes/class-wp-gpse-frontend.php';
 require_once GPSE_PATH . 'includes/class-wp-gpse-blocks.php';
 
 function gpse_init() {
+	// Note: load_plugin_textdomain() is not needed since WordPress 4.6+
+	// WordPress automatically loads translations for plugins based on the Text Domain header
+
 	$plugin_admin = new WP_GPSE_Admin();
 	$plugin_admin->init();
 
