@@ -3,7 +3,7 @@ Contributors: gemini
 Tags: search, google, gcse, programmable search, cse
 Requires at least: 6.4
 Tested up to: 6.9
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 Requires PHP: 8.4
 License: AGPL v3 or later
 License URI: https://www.gnu.org/licenses/agpl-3.0.html
@@ -15,14 +15,14 @@ Replaces the standard WordPress search with a Google Programmable Search Engine 
 -   **Seamless Integration**: Replaces the standard WordPress search form automatically.
 -   **Search Results Page**: Redirects all searches to a dedicated page of your choice.
 -   **Configurable**: Easy settings to add your Search Engine ID (CX) and select the results page.
--   **Shortcodes**: Use `[gpse_form]` and `[gpse_results]` to place the search box and results anywhere.
+-   **Blocks & Shortcodes**: Use Gutenberg blocks or shortcodes (`[gpse_form]` and `[gpse_results]`) to place the search box and results anywhere.
 
 ## Installation & Setup
 
 1.  **Install the Plugin**: Upload the `gpse` folder to your `/wp-content/plugins/` directory and activate it.
 2.  **Create a Results Page**:
     *   Create a new Page in WordPress (e.g., "Search Results").
-    *   Add the shortcode `[gpse_results]` to the page content.
+    *   Add the **GPSE Search Results** block (or the `[gpse_results]` shortcode) to the page content.
     *   Publish the page.
 3.  **Configure**:
     *   Go to **Settings > GPSE**.
