@@ -2,7 +2,7 @@
 Contributors: gemini
 Tags: search, google, gcse, programmable search, cse
 Requires at least: 6.4
-Tested up to: 6.7
+Tested up to: 6.9
 Stable tag: 1.0.0
 Requires PHP: 8.0
 License: AGPL v3 or later
