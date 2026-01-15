@@ -20,6 +20,7 @@ define( 'GPSE_BASENAME', plugin_basename( __FILE__ ) );
 
 require_once GPSE_PATH . 'includes/class-wp-gpse-admin.php';
 require_once GPSE_PATH . 'includes/class-wp-gpse-frontend.php';
+require_once GPSE_PATH . 'includes/class-wp-gpse-blocks.php';
 
 function gpse_init() {
 	$plugin_admin = new WP_GPSE_Admin();
@@ -27,5 +28,8 @@ function gpse_init() {
 
 	$plugin_frontend = new WP_GPSE_Frontend();
 	$plugin_frontend->init();
+
+	$plugin_blocks = new WP_GPSE_Blocks();
+	$plugin_blocks->init();
 }
 add_action( 'plugins_loaded', 'gpse_init' );
