@@ -3,7 +3,7 @@ Contributors: gemini
 Tags: search, google, gcse, programmable search, cse
 Requires at least: 6.4
 Tested up to: 6.9
-Stable tag: 1.2.0
+Stable tag: 1.2.2
 Requires PHP: 8.0
 License: AGPL v3 or later
 License URI: https://www.gnu.org/licenses/agpl-3.0.html
@@ -44,6 +44,11 @@ Redirects WordPress searches to display Google Programmable Search Engine (GCSE)
     *   Or use your theme's built-in search form.
 
 == Changelog ==
+
+= 1.2.2 =
+* Fixed blank search box on results page - search forms now display the search term.
+* Added PHP filters to populate search input values from query parameter.
+* Improved mobile performance by using server-side rendering instead of JavaScript.
 
 = 1.2.0 =
 * Removed custom GPSE Search Form block - use standard WordPress Search block instead.
