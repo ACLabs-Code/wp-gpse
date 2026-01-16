@@ -163,6 +163,13 @@ class WP_GPSE_Frontend {
 		// Get and sanitize the search query from URL
 		$query = isset( $_GET['q'] ) ? sanitize_text_field( wp_unslash( $_GET['q'] ) ) : '';
 
+		// Debug logging (only if WP_DEBUG is enabled)
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG && defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG ) {
+			error_log( 'GPSE Debug - populate_search_form_value called' );
+			error_log( 'GPSE Debug - Query from $_GET: ' . var_export( $query, true ) );
+			error_log( 'GPSE Debug - Form HTML (before): ' . substr( $form, 0, 500 ) );
+		}
+
 		if ( empty( $query ) ) {
 			return $form; // No query to populate
 		}
@@ -184,6 +191,12 @@ class WP_GPSE_Frontend {
 			'$1 value="' . $escaped_query . '"$2',
 			$form
 		);
+
+		// Debug logging (only if WP_DEBUG is enabled)
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG && defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG ) {
+			error_log( 'GPSE Debug - Escaped query: ' . $escaped_query );
+			error_log( 'GPSE Debug - Form HTML (after): ' . substr( $form, 0, 500 ) );
+		}
 
 		return $form;
 	}
