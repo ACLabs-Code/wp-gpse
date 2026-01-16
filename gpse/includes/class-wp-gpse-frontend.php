@@ -161,7 +161,7 @@ class WP_GPSE_Frontend {
 	 */
 	public function populate_search_form_value( $form ) {
 		// Get and sanitize the search query from URL
-		$query = isset( $_GET['q'] ) ? sanitize_text_field( $_GET['q'] ) : '';
+		$query = isset( $_GET['q'] ) ? sanitize_text_field( wp_unslash( $_GET['q'] ) ) : '';
 
 		if ( empty( $query ) ) {
 			return $form; // No query to populate
@@ -170,11 +170,18 @@ class WP_GPSE_Frontend {
 		// Escape for use in HTML attribute
 		$escaped_query = esc_attr( $query );
 
-		// Use regex to find search input and add/update value attribute
-		// Matches: <input type="search" ...> or <input ... class="search-field" ...>
+		// First, remove any existing value attribute to avoid duplication
 		$form = preg_replace(
-			'/(<input[^>]*(?:type=["\']search["\']|class=["\'][^"\']*search-field[^"\']*["\'])[^>]*?)(\svalue=["\'][^"\']*["\'])?([^>]*>)/i',
-			'$1 value="' . $escaped_query . '"$3',
+			'/(<input[^>]*)(value=["\'][^"\']*["\'])([^>]*>)/i',
+			'$1$3',
+			$form
+		);
+
+		// Now add the value attribute to search inputs
+		// Matches: <input type="search" ...> or <input ... name="s" ...>
+		$form = preg_replace(
+			'/(<input[^>]*(?:type=["\']search["\']|name=["\']s["\'])[^>]*?)(>)/i',
+			'$1 value="' . $escaped_query . '"$2',
 			$form
 		);
 
@@ -200,7 +207,7 @@ class WP_GPSE_Frontend {
 		}
 
 		// Get and sanitize the search query from URL
-		$query = isset( $_GET['q'] ) ? sanitize_text_field( $_GET['q'] ) : '';
+		$query = isset( $_GET['q'] ) ? sanitize_text_field( wp_unslash( $_GET['q'] ) ) : '';
 
 		if ( empty( $query ) ) {
 			return $block_content; // No query to populate
@@ -209,10 +216,17 @@ class WP_GPSE_Frontend {
 		// Escape for use in HTML attribute
 		$escaped_query = esc_attr( $query );
 
-		// Find search input and add value attribute
+		// First, remove any existing value attribute to avoid duplication
 		$block_content = preg_replace(
-			'/(<input[^>]*type=["\']search["\'][^>]*?)(\svalue=["\'][^"\']*["\'])?([^>]*>)/i',
-			'$1 value="' . $escaped_query . '"$3',
+			'/(<input[^>]*)(value=["\'][^"\']*["\'])([^>]*>)/i',
+			'$1$3',
+			$block_content
+		);
+
+		// Now add the value attribute to search inputs
+		$block_content = preg_replace(
+			'/(<input[^>]*type=["\']search["\'][^>]*?)(>)/i',
+			'$1 value="' . $escaped_query . '"$2',
 			$block_content
 		);
 
