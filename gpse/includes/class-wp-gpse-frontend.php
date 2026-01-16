@@ -29,6 +29,7 @@ class WP_GPSE_Frontend {
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_google_script' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_init_script' ) );
 	}
 
 	/**
@@ -56,7 +57,8 @@ class WP_GPSE_Frontend {
 	 * Enqueue the Google CSE script.
 	 *
 	 * Loads the Google Programmable Search Engine JavaScript file with the
-	 * configured CX ID. Uses async loading strategy for better performance.
+	 * configured CX ID. Uses defer loading strategy to ensure DOM is ready
+	 * before script execution, improving mobile initialization reliability.
 	 *
 	 * @since 1.0.0
 	 * @return void
@@ -64,14 +66,34 @@ class WP_GPSE_Frontend {
 	public function enqueue_google_script() {
 		$cx_id = get_option( 'wp_gpse_cx_id' );
 		if ( ! empty( $cx_id ) ) {
-			wp_enqueue_script( 
-				'google-cse', 
-				'https://cse.google.com/cse.js?cx=' . esc_attr( $cx_id ), 
-				array(), 
-				GPSE_VERSION, 
-				array( 'strategy' => 'async' ) 
+			wp_enqueue_script(
+				'google-cse',
+				'https://cse.google.com/cse.js?cx=' . esc_attr( $cx_id ),
+				array(),
+				GPSE_VERSION,
+				array( 'strategy' => 'defer', 'in_footer' => true )
 			);
 		}
+	}
+
+	/**
+	 * Enqueue initialization detection script.
+	 *
+	 * Loads a script that detects if Google CSE initializes successfully
+	 * and provides fallback error messaging if it fails. Particularly useful
+	 * for debugging mobile initialization issues.
+	 *
+	 * @since 1.2.1
+	 * @return void
+	 */
+	public function enqueue_init_script() {
+		wp_enqueue_script(
+			'gpse-init',
+			GPSE_URL . 'assets/js/gpse-init.js',
+			array(),
+			GPSE_VERSION,
+			array( 'strategy' => 'defer', 'in_footer' => true )
+		);
 	}
 
 	/**

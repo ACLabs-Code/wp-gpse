@@ -143,3 +143,87 @@ td.gsc-orderby-container {
     display: inline-block !important;
     vertical-align: middle !important;
 }
+/* ==========================================================================
+ * Mobile & Responsive Fixes
+ * ========================================================================== */
+
+/* Ensure results container is visible and takes up space */
+.gcse-searchresults-only {
+	min-height: 300px;
+	width: 100%;
+	display: block !important;
+	visibility: visible !important;
+}
+
+/* Loading indicator styling */
+.gpse-loading-indicator {
+	padding: 40px 20px;
+	text-align: center;
+	color: #666;
+	font-size: 16px;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+	/* Ensure results container is full width on mobile */
+	.gsc-control-cse {
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+
+	/* Make sure results don't overflow */
+	.gcse-searchresults-only {
+		overflow-x: hidden;
+		padding: 0 10px;
+	}
+
+	/* Adjust dropdown min-width for narrow screens */
+	.gsc-orderby-container,
+	.gsc-option-menu-container {
+		min-width: 120px !important; /* Reduced from 150px */
+	}
+}
+
+/* Stack elements vertically on very narrow screens */
+@media (max-width: 480px) {
+	.gsc-result-info-container .gsc-orderby-container {
+		display: block !important;
+		margin-left: 0 !important;
+		margin-top: 10px !important;
+	}
+}
+
+/* Ensure CSE iframes render properly if used */
+.gsc-control-cse iframe {
+	max-width: 100% !important;
+}
+
+/* ==========================================================================
+ * Error Message Styling
+ * ========================================================================== */
+
+.gpse-error-message {
+	padding: 30px 20px;
+	text-align: center;
+	background: #fff3cd;
+	border: 1px solid #ffc107;
+	border-radius: 4px;
+	margin: 20px 0;
+}
+
+.gpse-error-message strong {
+	color: #856404;
+	font-size: 18px;
+	display: block;
+	margin-bottom: 10px;
+}
+
+.gpse-error-message p {
+	color: #856404;
+	margin: 10px 0;
+}
+
+.gpse-error-message small {
+	color: #856404;
+	opacity: 0.8;
+}
