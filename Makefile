@@ -4,7 +4,7 @@
 
 # Variables
 PLUGIN_NAME = gpse
-VERSION = 1.2.2
+VERSION = 1.2.3
 PLUGIN_DIR = gpse
 DIST_DIR = dist
 BUILD_DIR = $(DIST_DIR)/$(PLUGIN_NAME)
