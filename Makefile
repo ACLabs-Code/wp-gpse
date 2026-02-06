@@ -1,5 +1,5 @@
 # Makefile for GPSE WordPress Plugin Distribution
-# Author: Gemini
+# Author: ACLabs
 # Description: Automates building, packaging, and versioning of the GPSE Search plugin
 
 # Variables

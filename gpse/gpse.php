@@ -3,7 +3,7 @@
  * Plugin Name: GPSE Search
  * Description: Redirects WordPress searches to display Google Programmable Search Engine (GCSE) results.
  * Version: 1.2.2
- * Author: Gemini
+ * Author: ACLabs
  * Text Domain: gpse
  * License: AGPL v3 or later
  * License URI: https://www.gnu.org/licenses/agpl-3.0.html

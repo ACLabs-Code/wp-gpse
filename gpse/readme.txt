@@ -1,5 +1,5 @@
 === GPSE Search ===
-Contributors: gemini
+Contributors: ACLabs
 Tags: search, google, gcse, programmable search, cse
 Requires at least: 6.4
 Tested up to: 6.9.1
