@@ -92,8 +92,11 @@ install_db() {
 	local DB_PORT=${PARTS[1]}
 	local EXTRA=""
 
-	# MariaDB client uses --skip-ssl; MySQL 8.0+ client uses --ssl-mode=DISABLED
-	local SSL_OPT="--ssl-mode=DISABLED"
+	# MariaDB client tries to verify the server SSL cert by default and fails
+	# on self-signed certs; --skip-ssl disables SSL for MariaDB.
+	# MySQL 8.0+ client uses ssl-mode=PREFERRED by default (SSL without cert
+	# verification), which is required for caching_sha2_password auth to work.
+	local SSL_OPT=""
 	if mysqladmin --version 2>/dev/null | grep -qi "MariaDB"; then
 		SSL_OPT="--skip-ssl"
 	fi
