@@ -1,91 +1,93 @@
 /* WP GPSE Custom Styles */
 
-/* 
+/*
  * ==========================================================================
  * Google CSE Reset / Protection
  * ==========================================================================
- * Many WordPress themes apply aggressive styling to global elements like 
+ * Many WordPress themes apply aggressive styling to global elements like
  * 'table', 'td', 'input', etc. This breaks the Google CSE layout.
  * We use high-specificity selectors to reset these values.
  */
 
 /* Main Container Reset */
 .gsc-control-cse {
-    font-family: Arial, sans-serif !important; /* Optional: Reset font if theme overrides weirdly */
-    padding: 0 !important;
+	font-family: Arial, sans-serif !important; /* Optional: Reset font if theme overrides weirdly */
+	padding: 0 !important;
 }
 
 /* Table Resets */
-/* Google uses tables for layout. Themes often add borders/padding to all 'td's. */
+
+/* Google uses tables for layout.
+ * Themes often add borders/padding to all 'td's. */
 .gsc-control-cse table,
 .gsc-control-cse tbody,
 .gsc-control-cse tr,
 .gsc-control-cse td {
-    border: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    line-height: normal !important;
-    width: auto; /* Prevent 100% width forcing on internal cells */
+	border: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	line-height: normal !important;
+	width: auto; /* Prevent 100% width forcing on internal cells */
 }
 
 /* Specific fix for the search box input */
 .gsc-input-box {
-    height: auto !important;
-    border: 1px solid #dfe1e5 !important; /* Restore default Google border if theme removed it */
-    background: #fff !important;
+	height: auto !important;
+	border: 1px solid #dfe1e5 !important; /* Restore default Google border if theme removed it */
+	background: #fff !important;
 }
 
 .gsc-input-box table {
-    margin: 0 !important;
+	margin: 0 !important;
 }
 
 /* The actual text input field */
-input.gsc-input, 
+input.gsc-input,
 .gsc-input-box input {
-    background: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 6px 10px !important; /* Standard padding */
-    margin: 0 !important;
-    height: auto !important; /* Fix "twice as high" issue */
-    line-height: normal !important;
-    width: 100% !important;
+	background: none !important;
+	border: none !important;
+	box-shadow: none !important;
+	padding: 6px 10px !important; /* Standard padding */
+	margin: 0 !important;
+	height: auto !important; /* Fix "twice as high" issue */
+	line-height: normal !important;
+	width: 100% !important;
 }
 
 /* Search Button Reset */
 button.gsc-search-button,
 input.gsc-search-button {
-    height: auto !important;
-    padding: 10px !important; /* Ensure button isn't tiny */
-    margin: 0 !important;
-    width: auto !important;
-    box-sizing: content-box !important;
+	height: auto !important;
+	padding: 10px !important; /* Ensure button isn't tiny */
+	margin: 0 !important;
+	width: auto !important;
+	box-sizing: content-box !important;
 }
 
-/* 
+/*
  * ==========================================================================
  * Autocomplete / Type-ahead Fixes
  * ==========================================================================
  */
 
 .gssb_c {
-    z-index: 10000 !important;
-    margin-top: 15px; /* Default push down. Overridden by settings if changed. */
+	z-index: 10000 !important;
+	margin-top: 15px; /* Default push down. Overridden by settings if changed. */
 }
 
 .gsc-completion-container {
-    font-family: inherit;
-    font-size: inherit;
-    background-color: #fff !important;
-    margin-top: 15px; 
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+	font-family: inherit;
+	font-size: inherit;
+	background-color: #fff !important;
+	margin-top: 15px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .gsc-completion-container td {
-    border: none !important;
-    padding: 0 !important;
+	border: none !important;
+	padding: 0 !important;
 }
 
 /*
@@ -97,52 +99,53 @@ input.gsc-search-button {
 /* Fix for the "Sort by" dropdown text overflow and positioning */
 .gsc-orderby-container,
 .gsc-option-menu-container {
-    width: auto !important;
-    min-width: 150px !important;
-    overflow: visible !important;
+	width: auto !important;
+	min-width: 150px !important;
+	overflow: visible !important;
 }
 
 .gsc-option-selector {
-    width: auto !important;
-    min-width: 150px !important;
-    white-space: nowrap !important;
-    overflow: visible !important;
+	width: auto !important;
+	min-width: 150px !important;
+	white-space: nowrap !important;
+	overflow: visible !important;
 }
 
 .gsc-option-menu-item {
-    white-space: nowrap !important;
-    overflow: visible !important;
-    text-overflow: clip !important;
+	white-space: nowrap !important;
+	overflow: visible !important;
+	text-overflow: clip !important;
 }
 
 /* Fix positioning - target the table cell containing the orderby */
 .gsc-result-info-container .gsc-orderby-container,
 .gsc-resultsHeader .gsc-orderby-container,
 .gsc-above-wrapper-area .gsc-orderby-container {
-    margin-left: 20px !important;
-    padding-left: 20px !important;
-    display: inline-block !important;
-    vertical-align: middle !important;
+	margin-left: 20px !important;
+	padding-left: 20px !important;
+	display: inline-block !important;
+	vertical-align: middle !important;
+}
+
+/* If it's in a table, target the td */
+td.gsc-orderby-container {
+	padding-left: 20px !important;
+	text-align: left !important;
 }
 
 /* Target the table cell itself */
 .gsc-resultsHeader td.gsc-orderby-container,
 .gsc-result-info-container td.gsc-orderby-container {
-    padding-left: 20px !important;
-}
-
-/* If it's in a table, target the td */
-td.gsc-orderby-container {
-    padding-left: 20px !important;
-    text-align: left !important;
+	padding-left: 20px !important;
 }
 
 /* Ensure proper alignment of the orderby label and dropdown */
 .gsc-orderby-label {
-    margin-right: 8px !important;
-    display: inline-block !important;
-    vertical-align: middle !important;
+	margin-right: 8px !important;
+	display: inline-block !important;
+	vertical-align: middle !important;
 }
+
 /* ==========================================================================
  * Mobile & Responsive Fixes
  * ========================================================================== */
@@ -165,6 +168,7 @@ td.gsc-orderby-container {
 
 /* Mobile-specific adjustments */
 @media (max-width: 768px) {
+
 	/* Ensure results container is full width on mobile */
 	.gsc-control-cse {
 		width: 100% !important;
@@ -186,6 +190,7 @@ td.gsc-orderby-container {
 
 /* Stack elements vertically on very narrow screens */
 @media (max-width: 480px) {
+
 	.gsc-result-info-container .gsc-orderby-container {
 		display: block !important;
 		margin-left: 0 !important;
