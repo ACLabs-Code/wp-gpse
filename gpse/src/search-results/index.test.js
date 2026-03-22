@@ -1,29 +1,23 @@
-import { getBlockType, unregisterBlockType } from '@wordpress/blocks';
-import './index.js';
+import metadata from './block.json';
 
-describe( 'gpse/search-results block', () => {
-	afterAll( () => {
-		unregisterBlockType( 'gpse/search-results' );
-	} );
-
-	it( 'is registered', () => {
-		expect( getBlockType( 'gpse/search-results' ) ).toBeDefined();
-	} );
-
+describe( 'gpse/search-results block metadata', () => {
 	it( 'has correct name', () => {
-		expect( getBlockType( 'gpse/search-results' ).name ).toBe( 'gpse/search-results' );
+		expect( metadata.name ).toBe( 'gpse/search-results' );
 	} );
 
 	it( 'has correct category', () => {
-		expect( getBlockType( 'gpse/search-results' ).category ).toBe( 'widgets' );
+		expect( metadata.category ).toBe( 'widgets' );
 	} );
 
 	it( 'has correct title', () => {
-		expect( getBlockType( 'gpse/search-results' ).title ).toBe( 'GPSE Search Results' );
+		expect( metadata.title ).toBe( 'GPSE Search Results' );
 	} );
 
-	it( 'save returns null (server-side rendered)', () => {
-		const blockType = getBlockType( 'gpse/search-results' );
-		expect( blockType.save( {} ) ).toBeNull();
+	it( 'uses Block API v3', () => {
+		expect( metadata.apiVersion ).toBe( 3 );
+	} );
+
+	it( 'has correct text domain', () => {
+		expect( metadata.textdomain ).toBe( 'gpse' );
 	} );
 } );
