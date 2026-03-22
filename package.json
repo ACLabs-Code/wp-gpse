@@ -6,10 +6,13 @@
   "scripts": {
     "start": "wp-scripts start --webpack-src-dir=gpse/src --output-path=gpse/build",
     "build": "wp-scripts build --webpack-src-dir=gpse/src --output-path=gpse/build",
-    "test:unit": "wp-scripts test-unit-js",
-    "test:e2e": "wp-scripts test-e2e-js",
+    "test:unit": "wp-scripts test-unit-js --testPathPattern=gpse/src",
+    "test:php": "wp-env run tests-cli phpunit",
     "lint:js": "wp-scripts lint-js",
-    "lint:css": "wp-scripts lint-style"
+    "lint:css": "wp-scripts lint-style",
+    "env:start": "wp-env start",
+    "env:stop": "wp-env stop",
+    "env:clean": "wp-env clean"
   },
   "repository": {
     "type": "git",
@@ -23,6 +26,7 @@
   },
   "homepage": "https://github.com/acockrell/wp-gpse#readme",
   "devDependencies": {
+    "@wordpress/env": "^10.0.0",
     "@wordpress/scripts": "^31.4.0"
   },
   "engines": {

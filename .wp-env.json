@@ -1,0 +1,6 @@
+{
+	"core": null,
+	"plugins": [ "." ],
+	"themes": [],
+	"phpVersion": "8.2"
+}
