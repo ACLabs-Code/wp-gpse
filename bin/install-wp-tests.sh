@@ -92,10 +92,16 @@ install_db() {
 	local DB_PORT=${PARTS[1]}
 	local EXTRA=""
 
+	# MariaDB client uses --skip-ssl; MySQL 8.0+ client uses --ssl-mode=DISABLED
+	local SSL_OPT="--ssl-mode=DISABLED"
+	if mysqladmin --version 2>/dev/null | grep -qi "MariaDB"; then
+		SSL_OPT="--skip-ssl"
+	fi
+
 	if [ -n "$DB_PORT" ]; then
-		EXTRA=" --host=$DB_HOSTNAME --port=$DB_PORT --protocol=tcp --skip-ssl"
+		EXTRA=" --host=$DB_HOSTNAME --port=$DB_PORT --protocol=tcp $SSL_OPT"
 	elif [ -n "$DB_HOSTNAME" ]; then
-		EXTRA=" --host=$DB_HOSTNAME --protocol=tcp --skip-ssl"
+		EXTRA=" --host=$DB_HOSTNAME --protocol=tcp $SSL_OPT"
 	fi
 
 	mysqladmin create "$DB_NAME" --user="$DB_USER" --password="$DB_PASS" $EXTRA 2>/dev/null || true
