@@ -18,7 +18,7 @@ RED = \033[0;31m
 NC = \033[0m # No Color
 
 # Phony targets (not actual files)
-.PHONY: all clean build version help
+.PHONY: all clean build version help lint test test-js test-php
 
 # Default target
 all: build
@@ -31,6 +31,10 @@ help:
 	@echo "  $(YELLOW)make$(NC) or $(YELLOW)make build$(NC)  - Build and package the plugin"
 	@echo "  $(YELLOW)make clean$(NC)             - Remove dist/ directory"
 	@echo "  $(YELLOW)make version$(NC)           - Update version numbers interactively"
+	@echo "  $(YELLOW)make lint$(NC)              - Run JS and CSS linters (mirrors CI lint job)"
+	@echo "  $(YELLOW)make test-js$(NC)           - Run Jest unit tests (mirrors CI test-js job)"
+	@echo "  $(YELLOW)make test-php$(NC)          - Run PHPUnit via wp-env (mirrors CI test-php job)"
+	@echo "  $(YELLOW)make test$(NC)              - Run all tests (test-js + test-php)"
 	@echo "  $(YELLOW)make help$(NC)              - Show this help message"
 	@echo ""
 	@echo "$(GREEN)Current Configuration:$(NC)"
@@ -114,6 +118,66 @@ build: clean
 	@echo "$(YELLOW)To test the plugin:$(NC)"
 	@echo "  1. Upload $(ZIP_FILE) to WordPress"
 	@echo "  2. Or extract to wp-content/plugins/"
+
+# Lint target - Run JS and CSS linters (mirrors CI lint job)
+lint:
+	@echo "$(BLUE)Running linters$(NC)"
+	@echo ""
+	@if [ ! -d "node_modules" ]; then \
+		echo "$(YELLOW)Installing npm dependencies...$(NC)"; \
+		npm install; \
+		echo ""; \
+	fi
+	@echo "$(YELLOW)Linting JS...$(NC)"
+	@npm run lint:js
+	@echo "$(GREEN)✓ JS lint passed$(NC)"
+	@echo ""
+	@echo "$(YELLOW)Linting CSS...$(NC)"
+	@npm run lint:css
+	@echo "$(GREEN)✓ CSS lint passed$(NC)"
+	@echo ""
+	@echo "$(GREEN)✓ All linters passed$(NC)"
+
+# test-js target - Run Jest unit tests (mirrors CI test-js job)
+test-js:
+	@echo "$(BLUE)Running JS tests$(NC)"
+	@echo ""
+	@if [ ! -d "node_modules" ]; then \
+		echo "$(YELLOW)Installing npm dependencies...$(NC)"; \
+		npm install; \
+		echo ""; \
+	fi
+	@npm run test:unit
+	@echo "$(GREEN)✓ JS tests passed$(NC)"
+
+# test-php target - Run PHPUnit via wp-env (mirrors CI test-php job)
+# Requires Docker. Starts wp-env if not already running.
+test-php:
+	@echo "$(BLUE)Running PHP tests$(NC)"
+	@echo ""
+	@if ! command -v docker >/dev/null 2>&1; then \
+		echo "$(RED)✗ Error: Docker is required for PHP tests$(NC)"; \
+		exit 1; \
+	fi
+	@if [ ! -d "node_modules" ]; then \
+		echo "$(YELLOW)Installing npm dependencies...$(NC)"; \
+		npm install; \
+		echo ""; \
+	fi
+	@if [ ! -d "vendor" ]; then \
+		echo "$(YELLOW)Installing Composer dependencies...$(NC)"; \
+		composer install; \
+		echo ""; \
+	fi
+	@echo "$(YELLOW)Starting wp-env...$(NC)"
+	@npm run env:start
+	@echo ""
+	@echo "$(YELLOW)Running PHPUnit...$(NC)"
+	@npm run test:php
+	@echo "$(GREEN)✓ PHP tests passed$(NC)"
+
+# test target - Run all tests
+test: test-js test-php
 
 # Version target - Update version numbers across files
 version:

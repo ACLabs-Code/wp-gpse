@@ -5,4 +5,10 @@ module.exports = {
 		// They are resolved by webpack externals during build, not by Node.
 		'import/no-unresolved': [ 'error', { ignore: [ '^@wordpress/' ] } ],
 	},
+	overrides: [
+		{
+			files: [ '**/*.test.js' ],
+			env: { jest: true },
+		},
+	],
 };
