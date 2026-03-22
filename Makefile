@@ -150,8 +150,9 @@ test-js:
 	@npm run test:unit
 	@echo "$(GREEN)✓ JS tests passed$(NC)"
 
-# test-php target - Run PHPUnit via wp-env (mirrors CI test-php job)
-# Requires Docker. Starts wp-env if not already running.
+# test-php target - Run PHPUnit in Docker (mirrors CI test-php job)
+# Builds a PHP 8.2 container with all test dependencies pre-installed.
+# WP test library is cached in a named Docker volume between runs.
 test-php:
 	@echo "$(BLUE)Running PHP tests$(NC)"
 	@echo ""
@@ -159,21 +160,12 @@ test-php:
 		echo "$(RED)✗ Error: Docker is required for PHP tests$(NC)"; \
 		exit 1; \
 	fi
-	@if [ ! -d "node_modules" ]; then \
-		echo "$(YELLOW)Installing npm dependencies...$(NC)"; \
-		npm install; \
-		echo ""; \
-	fi
-	@if [ ! -d "vendor" ]; then \
-		echo "$(YELLOW)Installing Composer dependencies...$(NC)"; \
-		composer install; \
-		echo ""; \
-	fi
-	@echo "$(YELLOW)Starting wp-env...$(NC)"
-	@npm run env:start
+	@echo "$(YELLOW)Building test container (first run may take a minute)...$(NC)"
+	@docker compose -f docker-compose.test.yml build phpunit
 	@echo ""
 	@echo "$(YELLOW)Running PHPUnit...$(NC)"
-	@npm run test:php
+	@docker compose -f docker-compose.test.yml run --rm phpunit
+	@docker compose -f docker-compose.test.yml down
 	@echo "$(GREEN)✓ PHP tests passed$(NC)"
 
 # test target - Run all tests

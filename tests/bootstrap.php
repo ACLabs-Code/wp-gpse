@@ -19,6 +19,9 @@ if ( ! file_exists( "$_tests_dir/includes/functions.php" ) ) {
 	exit( 1 );
 }
 
+// Required by the WP test bootstrap for PHPUnit 9+ compatibility.
+define( 'WP_TESTS_PHPUNIT_POLYFILLS_PATH', dirname( __DIR__ ) . '/vendor/yoast/phpunit-polyfills' );
+
 require_once "$_tests_dir/includes/functions.php";
 
 /**

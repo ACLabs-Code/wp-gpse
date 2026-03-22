@@ -68,7 +68,7 @@ install_test_suite() {
 		local ioption='-i'
 	fi
 
-	if [ ! -d "$WP_TESTS_DIR" ]; then
+	if [ ! -d "$WP_TESTS_DIR/includes" ]; then
 		mkdir -p "$WP_TESTS_DIR"
 		svn co --quiet "https://develop.svn.wordpress.org/${WP_TESTS_TAG}/tests/phpunit/includes/" "$WP_TESTS_DIR/includes"
 		svn co --quiet "https://develop.svn.wordpress.org/${WP_TESTS_TAG}/tests/phpunit/data/" "$WP_TESTS_DIR/data"
@@ -93,12 +93,12 @@ install_db() {
 	local EXTRA=""
 
 	if [ -n "$DB_PORT" ]; then
-		EXTRA=" --host=$DB_HOSTNAME --port=$DB_PORT --protocol=tcp"
+		EXTRA=" --host=$DB_HOSTNAME --port=$DB_PORT --protocol=tcp --skip-ssl"
 	elif [ -n "$DB_HOSTNAME" ]; then
-		EXTRA=" --host=$DB_HOSTNAME --protocol=tcp"
+		EXTRA=" --host=$DB_HOSTNAME --protocol=tcp --skip-ssl"
 	fi
 
-	mysqladmin create "$DB_NAME" --user="$DB_USER" --password="$DB_PASS" $EXTRA
+	mysqladmin create "$DB_NAME" --user="$DB_USER" --password="$DB_PASS" $EXTRA 2>/dev/null || true
 }
 
 set -ex
