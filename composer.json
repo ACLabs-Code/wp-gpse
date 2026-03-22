@@ -1,0 +1,17 @@
+{
+	"name": "aclabs/wp-gpse",
+	"description": "GPSE Search WordPress Plugin",
+	"license": "AGPL-3.0-or-later",
+	"require": {
+		"php": ">=8.2"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^9.6"
+	},
+	"config": {
+		"platform": {
+			"php": "8.2"
+		},
+		"allow-plugins": {}
+	}
+}
