@@ -1,7 +1,7 @@
 {
   "name": "wp-gpse",
   "version": "1.2.3",
-  "description": "=== GPSE Search === Contributors: ACLabs Tags: search, google, gcse, programmable search, cse Requires at least: 6.4 Tested up to: 6.9 Stable tag: 1.0.0 Requires PHP: 8.2 License: AGPL v3 or later License URI: https://www.gnu.org/licenses/agpl-3.0.html",
+  "description": "=== GPSE Search === Contributors: ACLabs Tags: search, google, gcse, programmable search, cse Requires at least: 6.4 Tested up to: 6.9 Stable tag: 1.2.3 Requires PHP: 8.2 License: AGPL v3 or later License URI: https://www.gnu.org/licenses/agpl-3.0.html",
   "main": "index.js",
   "scripts": {
     "start": "wp-scripts start --webpack-src-dir=gpse/src --output-path=gpse/build",
