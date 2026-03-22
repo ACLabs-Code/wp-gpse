@@ -104,7 +104,7 @@ install_db() {
 		EXTRA=" --host=$DB_HOSTNAME --protocol=tcp $SSL_OPT"
 	fi
 
-	mysqladmin create "$DB_NAME" --user="$DB_USER" --password="$DB_PASS" $EXTRA 2>/dev/null || true
+	mysqladmin create "$DB_NAME" --user="$DB_USER" --password="$DB_PASS" $EXTRA || true
 }
 
 set -ex
