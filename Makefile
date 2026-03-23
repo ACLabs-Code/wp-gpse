@@ -18,7 +18,7 @@ RED = \033[0;31m
 NC = \033[0m # No Color
 
 # Phony targets (not actual files)
-.PHONY: all clean build version help lint test test-js test-php
+.PHONY: all clean build version help lint test test-js test-php icons
 
 # Default target
 all: build
@@ -35,6 +35,7 @@ help:
 	@echo "  $(YELLOW)make test-js$(NC)           - Run Jest unit tests (mirrors CI test-js job)"
 	@echo "  $(YELLOW)make test-php$(NC)          - Run PHPUnit via wp-env (mirrors CI test-php job)"
 	@echo "  $(YELLOW)make test$(NC)              - Run all tests (test-js + test-php)"
+	@echo "  $(YELLOW)make icons$(NC)             - Export icon SVG to 128×128 and 256×256 PNG (requires librsvg)"
 	@echo "  $(YELLOW)make help$(NC)              - Show this help message"
 	@echo ""
 	@echo "$(GREEN)Current Configuration:$(NC)"
@@ -170,6 +171,22 @@ test-php:
 
 # test target - Run all tests
 test: test-js test-php
+
+# icons target - Export SVG icon to PNG at required WordPress.org sizes
+icons:
+	@echo "$(BLUE)Exporting plugin icons$(NC)"
+	@echo ""
+	@if ! command -v rsvg-convert >/dev/null 2>&1; then \
+		echo "$(RED)✗ Error: rsvg-convert is not installed$(NC)"; \
+		echo "$(YELLOW)Install it with: brew install librsvg$(NC)"; \
+		exit 1; \
+	fi
+	@rsvg-convert -w 128 -h 128 $(PLUGIN_DIR)/assets/icon.svg -o $(PLUGIN_DIR)/assets/icon-128x128.png
+	@echo "$(GREEN)✓ icon-128x128.png$(NC)"
+	@rsvg-convert -w 256 -h 256 $(PLUGIN_DIR)/assets/icon.svg -o $(PLUGIN_DIR)/assets/icon-256x256.png
+	@echo "$(GREEN)✓ icon-256x256.png$(NC)"
+	@echo ""
+	@echo "$(GREEN)✓ Icons exported$(NC)"
 
 # Version target - Update version numbers across files
 version:

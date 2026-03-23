@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Background -->
+  <rect width="256" height="256" rx="32" fill="#4A5568"/>
+
+  <!-- Magnifying glass circle -->
+  <circle cx="108" cy="104" r="52" fill="none" stroke="#5B9BD5" stroke-width="18"/>
+
+  <!-- Result rows inside lens -->
+  <line x1="82" y1="94"  x2="134" y2="94"  stroke="#E8EEF4" stroke-width="9" stroke-linecap="round"/>
+  <line x1="82" y1="110" x2="134" y2="110" stroke="#E8EEF4" stroke-width="9" stroke-linecap="round"/>
+  <line x1="82" y1="126" x2="118" y2="126" stroke="#E8EEF4" stroke-width="9" stroke-linecap="round"/>
+
+  <!-- Magnifying glass handle -->
+  <line x1="147" y1="143" x2="190" y2="186" stroke="#5B9BD5" stroke-width="18" stroke-linecap="round"/>
+</svg>
