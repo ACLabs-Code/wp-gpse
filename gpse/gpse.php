@@ -2,7 +2,7 @@
 /**
  * Plugin Name: GPSE Search
  * Description: Redirects WordPress searches to display Google Programmable Search Engine (GCSE) results.
- * Version: 1.2.3
+ * Version: 1.2.4
  * Author: ACLabs
  * Text Domain: gpse
  * License: AGPL v3 or later
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GPSE_VERSION', '1.2.3' );
+define( 'GPSE_VERSION', '1.2.4' );
 define( 'GPSE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'GPSE_URL', plugin_dir_url( __FILE__ ) );
 define( 'GPSE_BASENAME', plugin_basename( __FILE__ ) );

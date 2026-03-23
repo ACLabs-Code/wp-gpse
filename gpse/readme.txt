@@ -3,7 +3,7 @@ Contributors: ACLabs
 Tags: search, google, gcse, programmable search, cse
 Requires at least: 6.4
 Tested up to: 6.9.4
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 Requires PHP: 8.2
 License: AGPL v3 or later
 License URI: https://www.gnu.org/licenses/agpl-3.0.html
@@ -49,6 +49,10 @@ Redirects WordPress searches to display Google Programmable Search Engine (GCSE)
 2. Search results page — displays Google Programmable Search Engine results inline.
 
 == Changelog ==
+
+= 1.2.4 =
+* Fixed CSS lint errors in frontend stylesheet.
+* Added plugin icon for WordPress.org directory listing.
 
 = 1.2.3 =
 * Updated @wordpress/scripts from 31.2.0 to 31.4.0 (security improvements)
