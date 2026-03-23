@@ -46,6 +46,11 @@ class WP_GPSE_Frontend {
 	 * @return void
 	 */
 	public function enqueue_styles() {
+		$results_page_id = get_option( 'wp_gpse_results_page_id' );
+		if ( empty( $results_page_id ) || ! is_page( $results_page_id ) ) {
+			return;
+		}
+
 		wp_enqueue_style( 'gpse-style', GPSE_URL . 'assets/css/gpse.css', array(), GPSE_VERSION );
 
 		// Get margin value and ensure it's a positive integer (defense in depth)
@@ -68,6 +73,11 @@ class WP_GPSE_Frontend {
 	 * @return void
 	 */
 	public function enqueue_google_script() {
+		$results_page_id = get_option( 'wp_gpse_results_page_id' );
+		if ( empty( $results_page_id ) || ! is_page( $results_page_id ) ) {
+			return;
+		}
+
 		$cx_id = get_option( 'wp_gpse_cx_id' );
 		if ( ! empty( $cx_id ) ) {
 			wp_enqueue_script(
@@ -91,6 +101,11 @@ class WP_GPSE_Frontend {
 	 * @return void
 	 */
 	public function enqueue_init_script() {
+		$results_page_id = get_option( 'wp_gpse_results_page_id' );
+		if ( empty( $results_page_id ) || ! is_page( $results_page_id ) ) {
+			return;
+		}
+
 		wp_enqueue_script(
 			'gpse-init',
 			GPSE_URL . 'assets/js/gpse-init.js',

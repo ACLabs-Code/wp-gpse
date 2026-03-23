@@ -2,7 +2,7 @@
 Contributors: ACLabs
 Tags: search, google, gcse, programmable search, cse
 Requires at least: 6.4
-Tested up to: 6.9.4
+Tested up to: 6.9
 Stable tag: 1.2.4
 Requires PHP: 8.2
 License: AGPL v3 or later
@@ -13,6 +13,8 @@ Redirects WordPress searches to display Google Programmable Search Engine (GCSE)
 == Description ==
 
 Redirects WordPress searches to display Google Programmable Search Engine (GCSE) results. Works seamlessly with the standard WordPress Search block or your theme's search form.
+
+Source code is publicly available on [GitHub](https://github.com/ACLabs-Code/wp-gpse).
 
 === Features ===
 
@@ -43,10 +45,15 @@ Redirects WordPress searches to display Google Programmable Search Engine (GCSE)
     *   Add the standard WordPress **Search** block to your site (header, sidebar, page, etc.).
     *   Or use your theme's built-in search form.
 
-== Screenshots ==
+== Third-Party Services ==
 
-1. Plugin settings page — enter your Google Search Engine ID and select the results page.
-2. Search results page — displays Google Programmable Search Engine results inline.
+This plugin relies on Google Programmable Search Engine, an external service provided by Google LLC. When a visitor views your configured search results page, their browser loads a JavaScript file from `cse.google.com` and search queries are sent to Google's servers to retrieve results.
+
+By using this plugin you agree to be bound by Google's Terms of Service and acknowledge their Privacy Policy:
+
+*   [Google Terms of Service](https://policies.google.com/terms)
+*   [Google Privacy Policy](https://policies.google.com/privacy)
+*   [Google Programmable Search Engine](https://programmablesearchengine.google.com/)
 
 == Changelog ==
 
