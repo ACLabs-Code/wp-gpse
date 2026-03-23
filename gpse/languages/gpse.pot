@@ -1,124 +1,79 @@
-# Copyright (C) 2026 Gemini
-# This file is distributed under the AGPL v3 or later.
+# Copyright (C) 2026 GPSE Search
+# This file is distributed under the same license as the GPSE Search package.
 msgid ""
 msgstr ""
-"Project-Id-Version: GPSE Search 1.1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gpse\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: GPSE Search\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-01-15T07:38:16+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.12.0\n"
-"X-Domain: gpse\n"
+"Language-Team: ACLabs\n"
+"Last-Translator: ACLabs\n"
+"POT-Creation-Date: 2026-03-23 02:41+0000\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. Plugin Name of the plugin
-#: gpse.php
-#: includes/class-wp-gpse-admin.php:83
-msgid "GPSE Search"
-msgstr ""
-
-#. Description of the plugin
-#: gpse.php
-msgid "Replaces the standard WordPress search with a Google Programmable Search Engine (GCSE)."
-msgstr ""
-
-#. Author of the plugin
-#: gpse.php
-msgid "Gemini"
-msgstr ""
-
-#: includes/class-wp-gpse-admin.php:43
+#: gpse/includes/class-wp-gpse-admin.php:43
 msgid "Settings"
 msgstr ""
 
-#: includes/class-wp-gpse-admin.php:59
+#: gpse/includes/class-wp-gpse-admin.php:59
 msgid "GPSE Settings"
 msgstr ""
 
-#: includes/class-wp-gpse-admin.php:60
+#: gpse/includes/class-wp-gpse-admin.php:60
 msgid "GPSE"
 msgstr ""
 
-#: includes/class-wp-gpse-admin.php:79
+#: gpse/includes/class-wp-gpse-admin.php:79
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: includes/class-wp-gpse-admin.php:138
+#: gpse/includes/class-wp-gpse-admin.php:83
+msgid "GPSE Search"
+msgstr ""
+
+#: gpse/includes/class-wp-gpse-admin.php:138
 msgid "Configuration"
 msgstr ""
 
-#: includes/class-wp-gpse-admin.php:145
+#: gpse/includes/class-wp-gpse-admin.php:145
 msgid "Search Engine ID (CX)"
 msgstr ""
 
-#: includes/class-wp-gpse-admin.php:153
+#: gpse/includes/class-wp-gpse-admin.php:153
 msgid "Search Results Page"
 msgstr ""
 
-#: includes/class-wp-gpse-admin.php:161
+#: gpse/includes/class-wp-gpse-admin.php:161
 msgid "Autocomplete Top Margin (px)"
 msgstr ""
 
-#: includes/class-wp-gpse-admin.php:178
+#: gpse/includes/class-wp-gpse-admin.php:178
 msgid "Enter your Google Programmable Search Engine details below."
 msgstr ""
 
-#: includes/class-wp-gpse-admin.php:194
+#: gpse/includes/class-wp-gpse-admin.php:194
 msgid "You can find this in your Google Programmable Search Engine control panel."
 msgstr ""
 
-#: includes/class-wp-gpse-admin.php:219
+#: gpse/includes/class-wp-gpse-admin.php:219
 msgid "Select a page"
 msgstr ""
 
 #. translators: %s: shortcode tag [gpse_results]
-#: includes/class-wp-gpse-admin.php:243
-#, php-format
+#: gpse/includes/class-wp-gpse-admin.php:244
 msgid "Select the page where you have placed the %s shortcode. Native searches will be redirected here."
 msgstr ""
 
-#: includes/class-wp-gpse-admin.php:264
+#: gpse/includes/class-wp-gpse-admin.php:267
 msgctxt "pixels unit abbreviation"
 msgid "px"
 msgstr ""
 
-#: includes/class-wp-gpse-admin.php:265
+#: gpse/includes/class-wp-gpse-admin.php:268
 msgid "Adjust this if the autocomplete dropdown covers your search input. Default is 15."
-msgstr ""
-
-#: build/search-form/index.js:1
-#: src/search-form/index.js:13
-msgid "GPSE Search Form"
-msgstr ""
-
-#: build/search-results/index.js:1
-#: src/search-results/index.js:13
-msgid "GPSE Search Results"
-msgstr ""
-
-#: build/search-form/block.json
-#: src/search-form/block.json
-msgctxt "block title"
-msgid "GPSE Search Form"
-msgstr ""
-
-#: build/search-form/block.json
-#: src/search-form/block.json
-msgctxt "block description"
-msgid "Google Programmable Search Engine form."
-msgstr ""
-
-#: build/search-results/block.json
-#: src/search-results/block.json
-msgctxt "block title"
-msgid "GPSE Search Results"
-msgstr ""
-
-#: build/search-results/block.json
-#: src/search-results/block.json
-msgctxt "block description"
-msgid "Google Programmable Search Engine results list."
 msgstr ""
