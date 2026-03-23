@@ -238,10 +238,13 @@ class WP_GPSE_Admin {
 		?>
 		<p class="description">
 			<?php
-			printf(
-				/* translators: %s: shortcode tag [gpse_results] */
-				esc_html__( 'Select the page where you have placed the %s shortcode. Native searches will be redirected here.', 'gpse' ),
-				'<code>[gpse_results]</code>'
+			echo wp_kses(
+				sprintf(
+					/* translators: %s: shortcode tag [gpse_results] */
+					__( 'Select the page where you have placed the %s shortcode. Native searches will be redirected here.', 'gpse' ),
+					'<code>[gpse_results]</code>'
+				),
+				array( 'code' => array() )
 			);
 			?>
 		</p>
