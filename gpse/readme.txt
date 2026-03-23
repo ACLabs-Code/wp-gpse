@@ -3,7 +3,7 @@ Contributors: ACLabs
 Tags: search, google, gcse, programmable search, cse
 Requires at least: 6.4
 Tested up to: 6.9
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 Requires PHP: 8.2
 License: AGPL v3 or later
 License URI: https://www.gnu.org/licenses/agpl-3.0.html
@@ -56,6 +56,11 @@ By using this plugin you agree to be bound by Google's Terms of Service and ackn
 *   [Google Programmable Search Engine](https://programmablesearchengine.google.com/)
 
 == Changelog ==
+
+= 1.2.5 =
+* Restrict Google CSE script, stylesheet, and init script to the configured results page only.
+* Add third-party service disclosure for Google Programmable Search Engine.
+* Fix readme.txt Tested up to version format.
 
 = 1.2.4 =
 * Fixed CSS lint errors in frontend stylesheet.
