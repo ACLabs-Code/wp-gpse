@@ -5,12 +5,12 @@
   ],
   "packageRules": [
     {
-      "comment": "PHPUnit upgrades beyond 9.x are blocked on WordPress test suite compatibility",
+      "description": "PHPUnit upgrades beyond 9.x are blocked on WordPress test suite compatibility",
       "matchPackageNames": ["phpunit/phpunit"],
       "allowedVersions": "<10"
     },
     {
-      "comment": "polyfills v4+ requires PHPUnit 10+; keep in sync with phpunit/phpunit cap",
+      "description": "polyfills v4+ requires PHPUnit 10+; keep in sync with phpunit/phpunit cap",
       "matchPackageNames": ["yoast/phpunit-polyfills"],
       "allowedVersions": "<4"
     }
