@@ -27,7 +27,7 @@
   "homepage": "https://github.com/acockrell/wp-gpse#readme",
   "devDependencies": {
     "@wordpress/env": "^11.2.0",
-    "@wordpress/scripts": "^31.4.0"
+    "@wordpress/scripts": "^32.0.0"
   },
   "engines": {
     "node": ">=18.12.0",
