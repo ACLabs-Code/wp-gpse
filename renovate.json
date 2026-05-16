@@ -17,14 +17,21 @@
   "pinDigests": true,
   "lockFileMaintenance": {
     "enabled": true,
-    "schedule": ["before 6am on Monday"]
+    "schedule": ["before 6am on Monday"],
+    "minimumReleaseAge": "0 days"
   },
   "vulnerabilityAlerts": {
     "labels": ["security"],
     "automerge": true,
-    "schedule": ["at any time"]
+    "schedule": ["at any time"],
+    "minimumReleaseAge": "0 days"
   },
   "packageRules": [
+    {
+      "description": "Digest/pin updates carry no new code; skip stability-days",
+      "matchUpdateTypes": ["digest", "pinDigest"],
+      "minimumReleaseAge": "0 days"
+    },
     {
       "description": "PHPUnit upgrades beyond 9.x blocked on WordPress test suite compatibility",
       "matchPackageNames": ["phpunit/phpunit"],
