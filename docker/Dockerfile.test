@@ -1,4 +1,4 @@
-FROM php:8.5-cli@sha256:715aaeed991350e64ba0bf4a2bf99f8859cff96d14149b6de4d48f5bef6626a8
+FROM php:8.5-cli@sha256:f7476cffd8d6c48daa07fd80a58b85f97da095ad5a03fcf3361fd872122e3d91
 
 RUN apt-get update -q \
 	&& apt-get install -y -q --no-install-recommends \
