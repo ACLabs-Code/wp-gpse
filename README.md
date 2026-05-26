@@ -2,7 +2,7 @@
 Contributors: ACLabs
 Tags: search, google, gcse, programmable search, cse
 Requires at least: 6.4
-Tested up to: 6.9.1
+Tested up to: 7.0
 Stable tag: 1.2.3
 Requires PHP: 8.2
 License: AGPL v3 or later
