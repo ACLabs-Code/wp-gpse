@@ -1,11 +1,11 @@
 <?php
 /**
- * GPSE Search Uninstall Handler
+ * ACLabs Search Uninstall Handler
  *
  * Fired when the plugin is uninstalled (deleted, not just deactivated).
  * Removes all plugin data from the WordPress database.
  *
- * @package GPSE_Search
+ * @package ACLabs_Search
  * @since 1.1.0
  */
 

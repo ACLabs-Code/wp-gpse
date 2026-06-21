@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * GPSE Admin Settings Class
+ * ACLabs Search Admin Settings Class
  *
  * Handles all admin-related functionality including settings page,
  * option registration, and admin interface rendering.
@@ -48,7 +48,7 @@ class WP_GPSE_Admin {
 	/**
 	 * Add plugin settings page to WordPress admin menu.
 	 *
-	 * Registers the GPSE settings page under Settings > GPSE in the
+	 * Registers the ACLabs Search settings page under Settings > ACLabs Search in the
 	 * WordPress admin menu. Requires 'manage_options' capability.
 	 *
 	 * @since 1.0.0
@@ -67,7 +67,7 @@ class WP_GPSE_Admin {
 	/**
 	 * Render the admin settings page.
 	 *
-	 * Outputs the HTML for the GPSE settings page, including the form
+	 * Outputs the HTML for the ACLabs Search settings page, including the form
 	 * fields for CX ID, results page selection, and autocomplete margin.
 	 *
 	 * @since 1.0.0
@@ -168,7 +168,7 @@ class WP_GPSE_Admin {
 	/**
 	 * Display settings section description.
 	 *
-	 * Outputs introductory text for the GPSE configuration section,
+	 * Outputs introductory text for the ACLabs Search configuration section,
 	 * displayed above the settings fields.
 	 *
 	 * @since 1.0.0
