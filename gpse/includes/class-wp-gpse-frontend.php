@@ -84,7 +84,7 @@ class WP_GPSE_Frontend {
 				'google-cse',
 				'https://cse.google.com/cse.js?cx=' . esc_attr( $cx_id ),
 				array(),
-				GPSE_VERSION,
+				null,
 				array( 'strategy' => 'defer', 'in_footer' => true )
 			);
 		}
