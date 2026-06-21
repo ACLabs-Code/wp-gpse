@@ -5,10 +5,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * GPSE Frontend Class
+ * ACLabs Search Frontend Class
  *
  * Handles all frontend functionality including shortcodes, search redirection,
- * and Google CSE script/style enqueuing.
+ * and Google Custom Search script/style enqueuing.
  *
  * @since 1.0.0
  */
@@ -39,7 +39,7 @@ class WP_GPSE_Frontend {
 	/**
 	 * Enqueue plugin styles.
 	 *
-	 * Loads the main GPSE stylesheet and optionally adds inline CSS for
+	 * Loads the main ACLabs Search stylesheet and optionally adds inline CSS for
 	 * custom autocomplete margin adjustment if configured.
 	 *
 	 * @since 1.0.0
@@ -119,7 +119,7 @@ class WP_GPSE_Frontend {
 	 * Redirect native WordPress search to custom results page.
 	 *
 	 * Intercepts native WordPress search queries (?s=query) and redirects
-	 * them to the configured GPSE results page with the query parameter 'q'.
+	 * them to the configured ACLabs Search results page with the query parameter 'q'.
 	 * Only runs on frontend search pages when a results page is configured.
 	 *
 	 * @since 1.0.0

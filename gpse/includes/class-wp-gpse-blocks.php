@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * GPSE Gutenberg Blocks Class
+ * ACLabs Search Gutenberg Blocks Class
  *
  * Handles registration and rendering of Gutenberg blocks for search form
  * and search results display.
@@ -17,7 +17,7 @@ class WP_GPSE_Blocks {
 	/**
 	 * Initialize Gutenberg blocks functionality.
 	 *
-	 * Hooks into WordPress 'init' action to register the GPSE blocks
+	 * Hooks into WordPress 'init' action to register the ACLabs Search blocks
 	 * for use in the block editor.
 	 *
 	 * @since 1.1.0

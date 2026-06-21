@@ -5,9 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * GPSE Helper Functions Class
+ * ACLabs Search Helper Functions Class
  *
- * Provides shared utility methods for generating Google CSE HTML markup.
+ * Provides shared utility methods for generating Google Custom Search HTML markup.
  * Used by both shortcodes and Gutenberg blocks to avoid code duplication.
  *
  * @since 1.1.0
