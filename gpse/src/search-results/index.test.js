@@ -10,7 +10,7 @@ describe( 'gpse/search-results block metadata', () => {
 	} );
 
 	it( 'has correct title', () => {
-		expect( metadata.title ).toBe( 'GPSE Search Results' );
+		expect( metadata.title ).toBe( 'Google Custom Search Results' );
 	} );
 
 	it( 'uses Block API v3', () => {

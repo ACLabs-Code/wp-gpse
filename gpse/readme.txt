@@ -1,4 +1,4 @@
-=== GPSE Search ===
+=== ACLabs Search for Google Custom Search ===
 Contributors: ACLabs
 Tags: search, google, gcse, programmable search, cse
 Requires at least: 6.4
@@ -8,11 +8,11 @@ Requires PHP: 8.2
 License: AGPL v3 or later
 License URI: https://www.gnu.org/licenses/agpl-3.0.html
 
-Redirects WordPress searches to display Google Programmable Search Engine (GCSE) results.
+Redirects WordPress searches to display Google Custom Search results.
 
 == Description ==
 
-Redirects WordPress searches to display Google Programmable Search Engine (GCSE) results. Works seamlessly with the standard WordPress Search block or your theme's search form.
+Redirects WordPress searches to display Google Custom Search results. Works seamlessly with the standard WordPress Search block or your theme's search form.
 
 Source code is publicly available on [GitHub](https://github.com/ACLabs-Code/wp-gpse).
 
@@ -21,23 +21,23 @@ Source code is publicly available on [GitHub](https://github.com/ACLabs-Code/wp-
 *   **Seamless Integration**: Works with the standard WordPress Search block or your theme's search form.
 *   **Search Results Page**: Redirects all searches to a dedicated page of your choice.
 *   **Configurable**: Easy settings to add your Search Engine ID (CX) and select the results page.
-*   **Google-Powered Results**: Display Google CSE results using the GPSE Search Results block or `[gpse_results]` shortcode.
+*   **Google-Powered Results**: Display Google Custom Search results using the Google Custom Search Results block or `[gpse_results]` shortcode.
 
 === How it Works ===
 
 *   **Search Box**: Use the standard WordPress Search block or your theme's search form to allow users to search your site.
 *   **Redirection**: When a user searches (e.g., `/?s=myquery`), they are automatically redirected to your custom Results Page (e.g., `/search-results/?q=myquery`).
-*   **Google CSE Results**: The Results Page displays Google-powered search results using your configured Google Programmable Search Engine.
+*   **Google Custom Search Results**: The Results Page displays Google Custom Search results using your configured search engine.
 
 == Installation ==
 
 1.  **Install the Plugin**: Upload the `gpse` folder to your `/wp-content/plugins/` directory and activate it.
 2.  **Create a Results Page**:
     *   Create a new Page in WordPress (e.g., "Search Results").
-    *   Add the **GPSE Search Results** block (or the `[gpse_results]` shortcode) to the page content.
+    *   Add the **Google Custom Search Results** block (or the `[gpse_results]` shortcode) to the page content.
     *   Publish the page.
 3.  **Configure**:
-    *   Go to **Settings > GPSE**.
+    *   Go to **Settings > ACLabs Search**.
     *   Enter your **Google Search Engine ID (CX)**. (Get this from [programmablesearchengine.google.com](https://programmablesearchengine.google.com/)).
     *   Select your "Search Results" page from the dropdown.
     *   Save Changes.
@@ -47,20 +47,22 @@ Source code is publicly available on [GitHub](https://github.com/ACLabs-Code/wp-
 
 == Third-Party Services ==
 
-This plugin relies on Google Programmable Search Engine, an external service provided by Google LLC. When a visitor views your configured search results page, their browser loads a JavaScript file from `cse.google.com` and search queries are sent to Google's servers to retrieve results.
+This plugin relies on Google Custom Search Engine, an external service provided by Google LLC. When a visitor views your configured search results page, their browser loads a JavaScript file from `cse.google.com` and search queries are sent to Google's servers to retrieve results.
 
 By using this plugin you agree to be bound by Google's Terms of Service and acknowledge their Privacy Policy:
 
 *   [Google Terms of Service](https://policies.google.com/terms)
 *   [Google Privacy Policy](https://policies.google.com/privacy)
-*   [Google Programmable Search Engine](https://programmablesearchengine.google.com/)
+*   [Google Custom Search Engine](https://programmablesearchengine.google.com/)
 
 == Changelog ==
 
 = 1.2.6 =
+* Renamed plugin to "ACLabs Search for Google Custom Search".
+* Standardized terminology to "Google Custom Search" throughout.
 * Confirmed compatibility with WordPress 7.0.
-* Fixed URL encoding of Google CSE CX ID (rawurlencode instead of esc_attr).
-* Removed spurious version query string from Google CSE script URL.
+* Fixed URL encoding of Google Custom Search Engine CX ID.
+* Removed spurious version query string from Google Custom Search script URL.
 * Added `role: content` to block.json for correct editability in WordPress 7.0 contentOnly patterns.
 
 = 1.2.5 =

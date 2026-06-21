@@ -10,7 +10,7 @@ const Edit = () => {
 		<div { ...blockProps }>
 			<div className="gpse-block-placeholder">
 				<span className="dashicons dashicons-welcome-widgets-menus"></span>
-				{ __( 'GPSE Search Results', 'gpse' ) }
+				{ __( 'Google Custom Search Results', 'gpse' ) }
 			</div>
 		</div>
 	);

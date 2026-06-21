@@ -56,8 +56,8 @@ class WP_GPSE_Admin {
 	 */
 	public function add_plugin_page() {
 		add_options_page(
-			esc_html__( 'GPSE Settings', 'gpse' ),
-			esc_html__( 'GPSE', 'gpse' ),
+			esc_html__( 'ACLabs Search Settings', 'gpse' ),
+			esc_html__( 'ACLabs Search', 'gpse' ),
 			'manage_options',
 			'gpse',
 			array( $this, 'create_admin_page' )
@@ -80,7 +80,7 @@ class WP_GPSE_Admin {
 		}
 		?>
 		<div class="wrap">
-			<h1><?php echo esc_html__( 'GPSE Search', 'gpse' ); ?></h1>
+			<h1><?php echo esc_html__( 'ACLabs Search for Google Custom Search', 'gpse' ); ?></h1>
 			<form method="post" action="options.php">
 				<?php
 				// settings_fields() handles nonce generation and verification automatically
@@ -175,7 +175,7 @@ class WP_GPSE_Admin {
 	 * @return void
 	 */
 	public function section_info() {
-		echo esc_html__( 'Enter your Google Programmable Search Engine details below.', 'gpse' );
+		echo esc_html__( 'Enter your Google Custom Search Engine details below.', 'gpse' );
 	}
 
 	/**
@@ -191,7 +191,7 @@ class WP_GPSE_Admin {
 		$cx_id = get_option( 'wp_gpse_cx_id' );
 		?>
 		<input type="text" name="wp_gpse_cx_id" value="<?php echo esc_attr( $cx_id ); ?>" class="regular-text" />
-		<p class="description"><?php echo esc_html__( 'You can find this in your Google Programmable Search Engine control panel.', 'gpse' ); ?></p>
+		<p class="description"><?php echo esc_html__( 'You can find this in your Google Custom Search Engine control panel.', 'gpse' ); ?></p>
 		<?php
 	}
 
