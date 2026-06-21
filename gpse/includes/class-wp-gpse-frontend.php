@@ -185,10 +185,10 @@ class WP_GPSE_Frontend {
 		// Escape for use in HTML attribute
 		$escaped_query = esc_attr( $query );
 
-		// First, remove any existing value attribute to avoid duplication
+		// Remove any existing value attribute only on search inputs to avoid duplication
 		$form = preg_replace(
-			'/(<input[^>]*)(value=["\'][^"\']*["\'])([^>]*>)/i',
-			'$1$3',
+			'/(<input[^>]*(?:type=["\']search["\']|name=["\']s["\'])[^>]*?)\s*value=["\'][^"\']*["\']([^>]*>)/i',
+			'$1$2',
 			$form
 		);
 
@@ -231,10 +231,10 @@ class WP_GPSE_Frontend {
 		// Escape for use in HTML attribute
 		$escaped_query = esc_attr( $query );
 
-		// First, remove any existing value attribute to avoid duplication
+		// Remove any existing value attribute only on search inputs to avoid duplication
 		$block_content = preg_replace(
-			'/(<input[^>]*)(value=["\'][^"\']*["\'])([^>]*>)/i',
-			'$1$3',
+			'/(<input[^>]*type=["\']search["\'][^>]*?)\s*value=["\'][^"\']*["\']([^>]*>)/i',
+			'$1$2',
 			$block_content
 		);
 

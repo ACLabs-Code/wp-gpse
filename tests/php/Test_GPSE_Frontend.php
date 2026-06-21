@@ -53,6 +53,13 @@ class Test_GPSE_Frontend extends WP_UnitTestCase {
 		$this->assertStringNotContainsString( '<b>', $result );
 	}
 
+	public function test_form_submit_button_value_preserved() {
+		$_GET['q'] = 'cats';
+		$form      = '<form><input type="search" name="s" /><input type="submit" value="Search" /></form>';
+		$result    = $this->frontend->populate_search_form_value( $form );
+		$this->assertStringContainsString( 'value="Search"', $result );
+	}
+
 	// --- populate_search_block_value ---
 
 	public function test_non_search_block_returned_unchanged() {
