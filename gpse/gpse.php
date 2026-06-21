@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: GPSE Search
- * Description: Redirects WordPress searches to display Google Programmable Search Engine (GCSE) results.
+ * Plugin Name: ACLabs Search for Google Custom Search
+ * Description: Redirects WordPress searches to display Google Custom Search results.
  * Version: 1.2.5
  * Author: ACLabs
  * Text Domain: gpse
