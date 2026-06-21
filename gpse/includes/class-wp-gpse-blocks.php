@@ -30,11 +30,8 @@ class WP_GPSE_Blocks {
 	/**
 	 * Register Gutenberg blocks.
 	 *
-	 * Registers two blocks using Block API v3:
-	 * - gpse/search-form: Google CSE search input box
-	 * - gpse/search-results: Google CSE search results display
-	 *
-	 * Both blocks use server-side rendering with dynamic callbacks.
+	 * Registers the gpse/search-results block using Block API v3 with
+	 * server-side rendering via dynamic callback.
 	 *
 	 * @since 1.1.0
 	 * @return void
