@@ -57,6 +57,12 @@ By using this plugin you agree to be bound by Google's Terms of Service and ackn
 
 == Changelog ==
 
+= 1.2.6 =
+* Confirmed compatibility with WordPress 7.0.
+* Fixed URL encoding of Google CSE CX ID (rawurlencode instead of esc_attr).
+* Removed spurious version query string from Google CSE script URL.
+* Added `role: content` to block.json for correct editability in WordPress 7.0 contentOnly patterns.
+
 = 1.2.5 =
 * Restrict Google CSE script, stylesheet, and init script to the configured results page only.
 * Add third-party service disclosure for Google Programmable Search Engine.

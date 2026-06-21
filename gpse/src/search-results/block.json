@@ -7,6 +7,7 @@
 	"category": "widgets",
 	"icon": "welcome-widgets-menus",
 	"description": "Google Programmable Search Engine results list.",
+	"role": "content",
 	"supports": {
 		"html": false,
 		"align": true

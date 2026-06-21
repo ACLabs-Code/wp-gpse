@@ -82,9 +82,9 @@ class WP_GPSE_Frontend {
 		if ( ! empty( $cx_id ) ) {
 			wp_enqueue_script(
 				'google-cse',
-				'https://cse.google.com/cse.js?cx=' . esc_attr( $cx_id ),
+				'https://cse.google.com/cse.js?cx=' . rawurlencode( $cx_id ),
 				array(),
-				GPSE_VERSION,
+				null,
 				array( 'strategy' => 'defer', 'in_footer' => true )
 			);
 		}
