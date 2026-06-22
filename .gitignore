@@ -1,6 +1,7 @@
 node_modules/
 vendor/
 dist/
+gpse/build/
 .phpunit.result.cache
 .DS_Store
 npm-debug.log*
