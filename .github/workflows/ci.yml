@@ -7,16 +7,25 @@ on:
       - 'renovate.json'
   merge_group:
 
+# Cancel superseded PR runs when new commits are pushed. merge_group runs fall
+# back to a unique run_id group and are never cancelled (cancelling a queued
+# run would stall the merge queue).
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
 
   test-php:
+    # PRs get fast feedback on the lowest supported PHP (8.2); the merge queue
+    # runs the full matrix as the authoritative pre-merge gate.
     name: PHP ${{ matrix.php }} / WP Latest
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        php: [ '8.2', '8.3' ]
+        php: ${{ github.event_name == 'merge_group' && fromJSON('["8.2","8.3"]') || fromJSON('["8.2"]') }}
 
     services:
       mysql:
@@ -34,6 +43,28 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
+      - name: Resolve latest WordPress version
+        id: wp
+        run: |
+          version=$(curl -s https://api.wordpress.org/core/version-check/1.7/ \
+            | grep -o '"version":"[^"]*' | head -1 | sed 's/"version":"//')
+          if [ -z "$version" ]; then echo "Could not resolve WP version" >&2; exit 1; fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Cache WordPress core + test library
+        id: wp-cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            /tmp/wordpress
+            /tmp/wordpress-tests-lib
+          key: wp-${{ steps.wp.outputs.version }}
+
+      - name: Install Subversion
+        # Only needed to check out the test library on a cache miss.
+        if: steps.wp-cache.outputs.cache-hit != 'true'
+        run: sudo apt-get update -q && sudo apt-get install -y subversion
+
       - name: Set up PHP ${{ matrix.php }}
         uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
         with:
@@ -41,13 +72,12 @@ jobs:
           extensions: mysqli
           coverage: none
 
-      - name: Install Subversion
-        run: sudo apt-get update -q && sudo apt-get install -y subversion
-
       - name: Install Composer dependencies
         uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
 
       - name: Install WordPress test library
+        # On a cache hit this only creates the test database; the core and test
+        # library downloads are skipped by the script's dir-exists guards.
         run: bash bin/install-wp-tests.sh wordpress_test root root 127.0.0.1 latest
 
       - name: Run PHPUnit
