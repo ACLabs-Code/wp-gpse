@@ -209,10 +209,12 @@ version:
 	sed -i.bak "s/define( 'GPSE_VERSION', '[^']*' );/define( 'GPSE_VERSION', '$$NEW_VERSION' );/" $(PLUGIN_DIR)/gpse.php && rm $(PLUGIN_DIR)/gpse.php.bak; \
 	sed -i.bak "s/^Stable tag: .*/Stable tag: $$NEW_VERSION/" $(PLUGIN_DIR)/readme.txt && rm $(PLUGIN_DIR)/readme.txt.bak; \
 	sed -i.bak "s/^VERSION = .*/VERSION = $$NEW_VERSION/" Makefile && rm Makefile.bak; \
+		npm version "$$NEW_VERSION" --no-git-tag-version --allow-same-version >/dev/null; \
 	echo "$(GREEN)✓ Updated $(PLUGIN_DIR)/gpse.php (plugin header)$(NC)"; \
 	echo "$(GREEN)✓ Updated $(PLUGIN_DIR)/gpse.php (version constant)$(NC)"; \
 	echo "$(GREEN)✓ Updated $(PLUGIN_DIR)/readme.txt (stable tag)$(NC)"; \
 	echo "$(GREEN)✓ Updated Makefile (VERSION variable)$(NC)"; \
+		echo "$(GREEN)✓ Updated package.json (version)$(NC)"; \
 	echo ""; \
 	echo "$(GREEN)Version updated successfully to $$NEW_VERSION!$(NC)"; \
 	echo "$(YELLOW)Don't forget to update the changelog in readme.txt$(NC)"
