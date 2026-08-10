@@ -1,0 +1,129 @@
+name: Release
+
+# Cut a release by pushing a version tag:
+#   git tag v1.2.6 && git push origin v1.2.6
+#
+# The tag is the source of truth. This workflow verifies every version string
+# in the repo matches the tag, builds the distributable zip, and publishes a
+# GitHub Release with notes pulled from readme.txt's changelog.
+#
+# PHP/JS/lint correctness is already guaranteed on main by the merge queue
+# (all-green), so this workflow runs only the fast JS checks as a smoke gate
+# and focuses on version consistency + packaging.
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and publish release
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Resolve version from tag
+        id: version
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Releasing version: $VERSION"
+
+      - name: Verify version consistency
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          fail=0
+          check() { # label expected actual
+            if [ "$2" != "$3" ]; then
+              echo "::error::$1 is '$3', expected '$VERSION'"
+              fail=1
+            else
+              echo "OK: $1 = $3"
+            fi
+          }
+
+          header=$(grep -oiE '^\s*\*\s*Version:\s*\S+' gpse/gpse.php | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+          constant=$(grep -oE "GPSE_VERSION', '[^']+'" gpse/gpse.php | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+          stable=$(grep -oiE '^Stable tag:\s*\S+' gpse/readme.txt | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+          pkg=$(node -p "require('./package.json').version")
+
+          check "gpse.php plugin header" "$VERSION" "$header"
+          check "gpse.php GPSE_VERSION"  "$VERSION" "$constant"
+          check "readme.txt Stable tag"  "$VERSION" "$stable"
+          check "package.json version"   "$VERSION" "$pkg"
+
+          if [ "$fail" -ne 0 ]; then
+            echo "::error::Version strings do not match tag $GITHUB_REF_NAME. Run 'make version' before tagging."
+            exit 1
+          fi
+
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Smoke checks (JS)
+        run: |
+          npm run lint:js
+          npm run lint:css
+          npm run test:unit
+
+      - name: Build distributable
+        run: make build
+
+      - name: Extract changelog notes
+        id: notes
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          notes=$(awk -v v="= $VERSION =" '
+            $0 == v {flag=1; next}
+            /^= [0-9]/ {flag=0}
+            flag {print}
+          ' gpse/readme.txt | sed '/./,$!d')
+
+          if [ -z "$notes" ]; then
+            echo "::warning::No changelog entry found for $VERSION in readme.txt; falling back to auto-generated notes."
+            echo "have_notes=false" >> "$GITHUB_OUTPUT"
+          else
+            {
+              echo "notes<<EOF"
+              echo "$notes"
+              echo "EOF"
+            } >> "$GITHUB_OUTPUT"
+            echo "have_notes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+          HAVE_NOTES: ${{ steps.notes.outputs.have_notes }}
+          NOTES: ${{ steps.notes.outputs.notes }}
+        run: |
+          asset="dist/gpse-${VERSION}.zip"
+          if [ ! -f "$asset" ]; then
+            echo "::error::Expected build artifact $asset not found"
+            exit 1
+          fi
+
+          if [ "$HAVE_NOTES" = "true" ]; then
+            printf '%s\n' "$NOTES" > /tmp/release-notes.md
+            gh release create "$GITHUB_REF_NAME" "$asset" \
+              --title "$GITHUB_REF_NAME" \
+              --notes-file /tmp/release-notes.md
+          else
+            gh release create "$GITHUB_REF_NAME" "$asset" \
+              --title "$GITHUB_REF_NAME" \
+              --generate-notes
+          fi
