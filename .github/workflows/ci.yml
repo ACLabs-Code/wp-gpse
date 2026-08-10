@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     paths-ignore:
       - 'renovate.json'
+  merge_group:
 
 jobs:
 
