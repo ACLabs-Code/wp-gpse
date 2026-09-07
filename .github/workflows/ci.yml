@@ -43,10 +43,19 @@ jobs:
     name: PHP ${{ matrix.php }} / WP Latest
     runs-on: ubuntu-latest
     needs: changes
-    # merge_group always runs the full matrix; PRs run only when PHP-relevant
-    # files changed. !cancelled() lets this run even though `changes` is skipped
-    # on merge_group (a skipped dependency would otherwise skip this job).
-    if: ${{ !cancelled() && (github.event_name == 'merge_group' || needs.changes.outputs.php == 'true') }}
+    # Always run so this check reports a success conclusion — a *skipped* check
+    # stalls the merge queue's "all green" gate, even though it isn't a required
+    # context. !cancelled() lets this run even though `changes` is skipped on
+    # merge_group (a skipped dependency would otherwise skip this job). The
+    # actual work is gated on RUN_PHP below, so on PRs that touch no PHP the job
+    # runs but no-ops and still concludes green; the merge queue runs it for real.
+    if: ${{ !cancelled() }}
+
+    # true when the PHP suite should actually execute: always in the merge queue
+    # (the authoritative pre-merge gate), and on PRs only when PHP-relevant files
+    # changed. When false, every step below is skipped and the job passes empty.
+    env:
+      RUN_PHP: ${{ github.event_name == 'merge_group' || needs.changes.outputs.php == 'true' }}
 
     strategy:
       fail-fast: false
@@ -67,10 +76,12 @@ jobs:
           --health-retries=3
 
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - if: ${{ env.RUN_PHP == 'true' }}
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Resolve latest WordPress version
         id: wp
+        if: ${{ env.RUN_PHP == 'true' }}
         run: |
           version=$(curl -s https://api.wordpress.org/core/version-check/1.7/ \
             | grep -o '"version":"[^"]*' | head -1 | sed 's/"version":"//')
@@ -79,6 +90,7 @@ jobs:
 
       - name: Cache WordPress core + test library
         id: wp-cache
+        if: ${{ env.RUN_PHP == 'true' }}
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: |
@@ -88,10 +100,11 @@ jobs:
 
       - name: Install Subversion
         # Only needed to check out the test library on a cache miss.
-        if: steps.wp-cache.outputs.cache-hit != 'true'
+        if: ${{ env.RUN_PHP == 'true' && steps.wp-cache.outputs.cache-hit != 'true' }}
         run: sudo apt-get update -q && sudo apt-get install -y subversion
 
       - name: Set up PHP ${{ matrix.php }}
+        if: ${{ env.RUN_PHP == 'true' }}
         uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
         with:
           php-version: ${{ matrix.php }}
@@ -99,14 +112,17 @@ jobs:
           coverage: none
 
       - name: Install Composer dependencies
+        if: ${{ env.RUN_PHP == 'true' }}
         uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
 
       - name: Install WordPress test library
         # On a cache hit this only creates the test database; the core and test
         # library downloads are skipped by the script's dir-exists guards.
+        if: ${{ env.RUN_PHP == 'true' }}
         run: bash bin/install-wp-tests.sh wordpress_test root root 127.0.0.1 latest
 
       - name: Run PHPUnit
+        if: ${{ env.RUN_PHP == 'true' }}
         run: vendor/bin/phpunit
 
   test-js:
