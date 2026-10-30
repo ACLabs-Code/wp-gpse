@@ -32,7 +32,7 @@ help:
 	@echo "  $(YELLOW)make clean$(NC)             - Remove dist/ directory"
 	@echo "  $(YELLOW)make version$(NC)           - Update version numbers interactively"
 	@echo "  $(YELLOW)make lint$(NC)              - Run JS and CSS linters (mirrors CI lint job)"
-	@echo "  $(YELLOW)make test-js$(NC)           - Run Jest unit tests (mirrors CI test-js job)"
+	@echo "  $(YELLOW)make test-js$(NC)           - Run Vitest unit tests (mirrors CI test-js job)"
 	@echo "  $(YELLOW)make test-php$(NC)          - Run PHPUnit via wp-env (mirrors CI test-php job)"
 	@echo "  $(YELLOW)make test$(NC)              - Run all tests (test-js + test-php)"
 	@echo "  $(YELLOW)make icons$(NC)             - Export icon SVG to 128×128 and 256×256 PNG (requires librsvg)"
@@ -139,7 +139,7 @@ lint:
 	@echo ""
 	@echo "$(GREEN)✓ All linters passed$(NC)"
 
-# test-js target - Run Jest unit tests (mirrors CI test-js job)
+# test-js target - Run Vitest unit tests (mirrors CI test-js job)
 test-js:
 	@echo "$(BLUE)Running JS tests$(NC)"
 	@echo ""

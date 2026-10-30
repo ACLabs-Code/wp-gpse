@@ -12,7 +12,7 @@ make build
 make test
 
 # Individual test suites
-make test-js          # Jest
+make test-js          # Vitest
 make test-php         # PHPUnit in Docker
 
 # Linting
@@ -51,6 +51,6 @@ WordPress plugin that intercepts native WP search and redirects to a Google Prog
 
 **Tests**:
 - PHP: `tests/php/` — PHPUnit 9.6, bootstrap in `tests/bootstrap.php`
-- JS: `gpse/src/search-results/index.test.js` — Jest
+- JS: `gpse/src/search-results/index.test.js` — Vitest
 
 **Release artifact**: `dist/` directory produced by `make build`. PHP 8.2+ required.
