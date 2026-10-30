@@ -1,3 +1,11 @@
+/**
+ * External dependencies
+ */
+import { describe, expect, it } from 'vitest';
+
+/**
+ * Internal dependencies
+ */
 import metadata from './block.json';
 
 describe( 'gpse/search-results block metadata', () => {
